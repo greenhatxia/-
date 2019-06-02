@@ -1,12 +1,15 @@
-1.动态规划题，类似题型：爬楼梯
-2.先确定i>2(即0,1单独考虑)的情况
+1.动态规划题，类似题型：爬楼梯，本质上这道题比爬楼梯多了个if的判断语句
+2.先确定i>2的情况，写成公式，再单独考虑0,1的情况
 3.创建一个dp数列来存放每个计数
+4.循环可以是range（2，length），也可以是（length-3，-1，-1）
+
+
 class Solution:
     def getTranslationCount(self, s):
         """
         :type s: str
         :rtype: int
-"""        
+        """        
         s = str(s)
         l = len(s)
         if l == 0:
@@ -21,7 +24,7 @@ class Solution:
             dp[1]=1
         g=0
         for i in range(2,l):
-            if '10'<=s[l-i-1]+s[l-i]<='25' :#“00”不能转化成a
+            if '10'<=s[l-i-1]+s[l-i]<='25' :#条件：“00”不能转化成a
                 g=1
             else:
                 g=0
