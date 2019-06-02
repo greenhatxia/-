@@ -1,0 +1,22 @@
+直接背
+class Solution(object):
+    def getMaxValue(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        if len(grid)==0:
+            return 0
+        m=len(grid)
+        n=len(grid[0])
+        maxValue = [0 for i in range(n)]
+        for i in range(m):
+            for j in range(n):
+                up = 0
+                left = 0
+                if i >0:
+                    up= maxValue[j]
+                if j >0:
+                    left = maxValue[j-1]
+                maxValue[j]=max(left,up)+grid[i][j]
+        return maxValue[n-1]
