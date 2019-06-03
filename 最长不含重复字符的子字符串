@@ -1,0 +1,21 @@
+理清逻辑，只有 s[i] in strdict and strdict[s[i]]>=start这个情况，才需要从新的start开始
+class Solution:
+    def longestSubstringWithoutDuplication(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        max_len=0
+        one_max=0
+        strdict={}
+        start = 0
+        for i in range(len(s)):
+            
+            if s[i] in strdict and strdict[s[i]]>=start:
+                start=strdict[s[i]]+1
+                one_max=i-start+1#表示重复的字符可能出现在start之后，那么one_max要从新的start开始计算
+            else:
+                one_max+=1
+            max_len=max(max_len,one_max)
+            strdict[s[i]]=i
+        return max_len
