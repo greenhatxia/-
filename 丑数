@@ -1,0 +1,26 @@
+简单，
+本质思路：每次迭代，把整个数列都分别乘以2,3,5得到3个数列，再挑出下一个最小的丑数
+更省空间的思路：用3个index记录位置，这样每次迭代就不用乘以整个数列，
+例如第2次迭代，对于2数列，丑数数列中的第一个元素1已经被使用过，所以要乘以丑数数列中第2个元素
+class Solution:
+    def GetUglyNumber_Solution(self, index):
+        # write code here
+        if index <=0:
+            return 0
+        first=1
+        length=1
+        numlist=[1]
+        index2=0
+        index3=0
+        index5=0
+        while length<index:
+            new =min(numlist[index2]*2,numlist[index3]*3,numlist[index5]*5)
+            numlist.append(new)
+            if new==numlist[index2]*2:#比较是2数列还是
+                index2+=1
+            if new==numlist[index3]*3:
+                index3+=1
+            if new==numlist[index5]*5:
+                index5+=1
+            length=len(numlist)
+        return numlist[-1]
