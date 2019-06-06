@@ -1,0 +1,55 @@
+链接：https://www.nowcoder.com/questionTerminal/9f3231a991af4f55b95579b44b7a01ba
+来源：牛客网
+
+Python方法大总结
+方法一：直接min函数，有点像开挂
+class Solution:
+    def minNumberInRotateArray(self, rotateArray):
+        # write code here
+        if not rotateArray:
+            return 0
+        else:
+            return min(rotateArray)
+方法二：先sort排序
+class Solution:
+    def minNumberInRotateArray(self, rotateArray):
+        # write code here
+        if not rotateArray:
+            return 0
+        else:
+            rotateArray.sort()
+            return rotateArray[0]
+方法三：二分查找
+class Solution:
+    def minNumberInRotateArray(self, rotateArray):
+        # write code here
+        length = len(rotateArray)
+        if length == 0:
+           return 0
+        elif length == 1:
+            return rotateArray[0]
+        else:
+            left = 0
+            right = length - 1
+            while left < right:
+                mid = (left + right)/2
+                if rotateArray[mid] < rotateArray[j]:
+                    right = mid
+                else:
+                    left = mid+1
+            return rotateArray[i]
+方法四：比较
+class Solution:
+    def minNumberInRotateArray(self, rotateArray):
+        # write code here
+        length = len(rotateArray)
+        if length == 0:
+           return 0
+        elif length == 1:
+            return rotateArray[0]
+        else:
+            for i in range(length-1):
+                if rotateArray[i] > rotateArray[i+1]:
+                    return rotateArray[i+1]
+            return rotateArray[length-1]
+人生苦短，我用Python
