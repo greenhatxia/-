@@ -1,0 +1,20 @@
+很简单，采用顺序扫描法，但时间复杂度O（n），也采用和C++类似的二分法
+class Solution(object):
+    def getNumberSameAsIndex(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        if len(nums)<1 or nums==[]:
+            return -1
+        left = 0
+        right =len(nums)-1
+        while (left<=right):
+            mid=(left+right)>>1
+            if nums[mid]==mid:
+                return mid
+            if nums[mid]>mid:
+                right=mid-1#注意减1和加1对while条件的影响
+            else:
+                left=mid+1
+        return -1
