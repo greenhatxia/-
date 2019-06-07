@@ -1,0 +1,18 @@
+链接：https://www.nowcoder.com/questionTerminal/e02fdb54d7524710a7d664d082bb7811
+来源：牛客网
+
+hashMap法
+class Solution:
+    # 返回[a,b] 其中ab是出现一次的两个数字
+    def FindNumsAppearOnce(self, array):
+        hashMap = {}
+        for i in array:
+            if str(i) in hashMap:#3个str可以都去掉，key只要是常数就可以
+                hashMap[str(i)] += 1
+            else:
+                hashMap[str(i)] = 1
+        res = []
+        for k in hashMap.keys():
+            if hashMap[k] == 1:
+                res.append(int(k))
+        return res
