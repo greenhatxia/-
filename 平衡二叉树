@@ -1,0 +1,26 @@
+算法复杂度O(N)
+链接：https://www.nowcoder.com/questionTerminal/8b3b95850edb4115918ecebdf1b4d222
+来源：牛客网
+
+# -*- coding:utf-8 -*-
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+class Solution:
+    def IsBalanced_Solution(self, p):
+        # write code here
+        return self.dfs(p) != -1
+    def dfs(self, p):
+        if p is None:
+            return 0
+        left = self.dfs(p.left)
+        if left==-1:#判断左子树
+            return -1
+        right = self.dfs(p.right)
+        if right==-1:#判断右子树
+            return -1
+        if abs(left-right)>1:#判断本节点
+            return -1
+        return max(left,right)+1
