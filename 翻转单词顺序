@@ -1,0 +1,13 @@
+class Solution:
+    def ReverseSentence(self, s):
+        return " ".join(s.split(" ")[::-1])#[i:j:s]表示从i到j，步长-1
+如果记不住，可以一步一步分解写如下：
+class Solution:
+    def ReverseSentence(self, s):
+        # write code here
+        if not s:
+            return ""
+        slist=s.split(" ")
+        slist.reverse()
+        a=" ".join(i for i in slist)
+        return a
