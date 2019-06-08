@@ -1,0 +1,15 @@
+输入一个递增排序的数组和一个数字S，在数组中查找两个数，使得他们的和正好是S，如果有多对数字的和等于S，输出两个数的乘积最小的（书里没要求最小，只说任意）。
+链接：https://www.nowcoder.com/questionTerminal/390da4f7a00f44bea7c2f3d19491311b
+来源：牛客网
+
+def FindNumbersWithSum(self, array, tsum):
+    # 两头开始找匹配，乘积最小必定为最先找到的，如7+8=15 1+14=15乘积1*14小
+    low, high = 0, len(array) - 1
+    while low < high:
+        if array[low] + array[high] > tsum:
+            high -= 1
+        elif array[low] + array[high] < tsum:
+            low += 1
+        else:
+            return [array[low], array[high]]
+    return []  # 匹配失败返回空list
