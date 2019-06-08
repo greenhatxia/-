@@ -1,0 +1,12 @@
+书上的第一个思路
+class Solution:
+    def maxInWindows(self, num, size):
+        # write code here
+        if not size:
+            return []
+        l=len(num)
+        list1=[]
+        for i in range(l-size+1):
+            maxNum=max(num[i:i+size])
+            list1.append(maxNum)
+        return list1
