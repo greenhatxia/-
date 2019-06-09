@@ -1,0 +1,45 @@
+class Solution(object):
+    def numberOfDice(self, n):
+        """
+        :type n: int
+        :rtype: List[int]
+        if n<1:
+            return []
+        flag=0
+        p=[[0 for i in range(6*n+1)] for i in range(2)]
+        for i in range(1,7):
+            p[flag][i]=1
+        for k in range(2,n+1):
+            for i in range(0,k):
+                p[1-flag][i]=0
+            for i in range(k,6*k+1):
+                p[1-flag][i] = 0
+                for j in range(1,min(i,7)):#也可以i+1
+                    p[1-flag][i]+=p[flag][i-j]
+            flag=1-flag
+        return p[flag][n:]
+采用的书上的第二种思路，直接背，代码理解如下
+          for(int i=0;i<g_maxValue;i++)
+          {//初始化数组
+ 8              pProbabilities[0][i] = 0;
+ 9              pProbabilities[1][i] = 0;
+10         }
+11         int flag = 0;
+12         for(int i=1;i<=g_maxValue;i++){//当第一次抛掷骰子时，有6种可能，每种可能出现一次
+13             pProbabilities[flag][i] = 1;
+14         }
+15         //从第二次开始掷骰子，假设第一个数组中的第n个数字表示骰子和为n出现的次数，
+16         //在下一循环中，我们加上一个新骰子，此时和为n的骰子出现次数应该等于上一次循环中骰子点数和为n-1,n-2,n-3,n-4,n-5，
+17         //n-6的次数总和，所以我们把另一个数组的第n个数字设为前一个数组对应的n-1,n-2,n-3,n-4,n-5，n-6之和
+18         for(int k =2;k<=number;k++){
+19             for(int i=0;i<k;i++){//第k次掷骰子，和最小为k，小于k的情况是不可能发生的！所以另不可能发生的次数设置为0！
+20                 pProbabilities[1-flag][i] = 0;
+21             }
+22             for(int i=k;i<=g_maxValue*k;i++){//第k次掷骰子，和最小为k，最大为g_maxValue*k
+23                 pProbabilities[1-flag][i] = 0;//初始化，因为这个数组要重复使用，上一次的值要清0
+24                 for(int j=1;j<=i&&j<=g_maxValue;j++){
+25                     pProbabilities[1-flag][i] += pProbabilities[flag][i-j];
+26                 }
+27             }
+28             flag = 1-flag;
+29         }
