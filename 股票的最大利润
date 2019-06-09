@@ -1,0 +1,21 @@
+ 书上的思路:
+ 1.循环的关键在于分购买和卖出两个步骤，所以每次迭代，min只能从以前的值取
+class Solution(object):
+    def maxDiff(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        if len(nums)<2:
+            return 0
+        min=nums[0]
+        maxdif=nums[1]-min
+        for i in range(2,len(nums)):
+            if nums[i-1]<min:
+                min=nums[i-1]
+            curdif=nums[i]-min
+            if curdif>maxdif:
+                maxdif=curdif
+        if maxdif<0:#假如出现【3,2,1】，只能选择不买和不卖才不亏钱
+            return 0
+        return maxdif
