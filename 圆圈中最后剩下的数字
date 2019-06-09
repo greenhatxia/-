@@ -1,0 +1,13 @@
+class Solution(object):
+    def lastRemaining(self, n, m):
+        """
+        :type n: int
+        :type m: int
+        :rtype: int
+        """
+        if n<1 or m<1:
+            return -1
+        res=0
+        for i in range(2,n+1):#从2开始，由于range，所以要以n+1结束
+            res=(res+m)%i#i不是n！！！！！
+        return res
