@@ -1,0 +1,16 @@
+c和d数组有n个元素，第一个元素都初始化为1，初始化其他元素的迭代次数n-1
+class Solution(object):
+    def multiply(self, A):
+        """
+        :type A: List[int]
+        :rtype: List[int]
+        """
+        if A==[]:
+            return []
+        l1=len(A)
+        c=[1]
+        d=[1]
+        for i in range(l1-1):
+            c.append(c[i]*A[i])
+            d.append(d[i]*A[l1-i-1])
+        return [c[i]*d[l1-i-1] for i in range(l1)]
