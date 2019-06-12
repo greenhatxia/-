@@ -59,4 +59,6 @@ num[m] == nums[l] : 将 l+1，重新递归计算 （当[l, r],将 r-1）
                 else:
                     high = mid - 1
         return False
-        
+题目：主元素 majority element
+一行代码解决：return sorted(num)[len(num)/2]
+
