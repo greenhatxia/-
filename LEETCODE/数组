@@ -24,7 +24,14 @@
 
         return -1
 题目：Search in Rotated Sorted Array II
-比I多了可能存在重复的元素这个条件
+比I多了可能存在重复的元素这个条件，
+与上一题（不允许重复）的不同是， 
+nums[m] > nums[l] : (l, m-1)单增 
+nums[m] <= nums[l] : (m+1, r)不一定单增，因为{1,3,1,1,1} 或{1,1,1,3,1}
+
+此时，可以将上述条件分开来看 
+nums[m] < nums[l] : (m+1, r)一定单增 
+num[m] == nums[l] : 将 l+1，重新递归计算 （当[l, r],将 r-1）
 代码比1只多了两行
  def search(self, nums, target):
         """
