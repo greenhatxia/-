@@ -61,4 +61,25 @@ num[m] == nums[l] : 将 l+1，重新递归计算 （当[l, r],将 r-1）
         return False
 题目：主元素 majority element
 一行代码解决：return sorted(num)[len(num)/2]
-
+~ta&((~c&tb)|(~tb&c))
+题目：single number
+2n+1个数，其中只有一个数出现了一次，其他都出现了两次，求出这个出现一次的数。
+用异或，利用异或运算的组合律不受运算顺序的影响
+def singleNumber(self, nums: List[int]) -> int:
+        a=0
+        for i in nums:
+            a^=i
+        return a
+扩展1: 2n+2个数，其中有两个出现一次，其他出现两次，求这两个出现一次的数。
+扩展2: 3n+1个非负数，只有一个数出现了一次，其他都出现了三次，求出现一次的数。 公司: 常见的题目
+思路来源https://www.nowcoder.com/questionTerminal/1097ca585245418ea2efd0e8b4d9eb7a
+    def singleNumberII(self, A):
+        # write your code here
+        a=0
+        b=0
+        for c in A:
+            ta=a
+            tb=b
+            a=((~ta)&tb&c)|(ta&(~tb)&(~c))
+            b=~ta&((~c&tb)|(~tb&c))
+        return a|b
