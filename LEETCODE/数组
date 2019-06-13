@@ -71,6 +71,25 @@ def singleNumber(self, nums: List[int]) -> int:
             a^=i
         return a
 扩展1: 2n+2个数，其中有两个出现一次，其他出现两次，求这两个出现一次的数。
+思路：其中我们取出xor中任何一位1，这里取最低位的1。
+这个1一定是A和B中对应位上一个是1一个是0。
+所以可以将所有数字分成两类，一类是该位是1的，一类是该位是0的。
+分别异或起来就得到A和B了。两类数一定都是奇数个，多出来的一个分别就是A、B
+def singleNumberIII(self, A):
+s = 0
+#将数组A中的数全部异或
+for x in A:
+s ^= x
+#取最低位的1，记住取最低位的套路代码
+y = s & (-s)
+res = [0, 0]
+for x in A:
+#将数组A中的数按笔记中的分为两类分别进行异或
+if (x & y) != 0:
+    res[0] ^= x
+else:
+    res[1] ^= x
+return res
 扩展2: 3n+1个非负数，只有一个数出现了一次，其他都出现了三次，求出现一次的数。 公司: 常见的题目
 思路来源https://www.nowcoder.com/questionTerminal/1097ca585245418ea2efd0e8b4d9eb7a
     def singleNumberII(self, A):
