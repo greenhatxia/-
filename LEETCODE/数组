@@ -111,4 +111,13 @@ def findKthLargest(self, nums: List[int], k: int) -> int:
         if nums==[]:
             return None
         return sorted(nums)[len(nums)-k]
- 题目：奇偶排序
+题目：奇偶排序 parity sorted
+def sortArrayByParity(self, A: List[int]) -> List[int]:
+        odd=[]
+        even=[]
+        for i in A:
+            if i%2==1:
+                odd.append(i)
+            else:
+                even.append(i)
+        return even+odd
