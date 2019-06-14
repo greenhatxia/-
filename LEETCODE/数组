@@ -102,3 +102,13 @@ return res
             a=((~ta)&tb&c)|(ta&(~tb)&(~c))
             b=~ta&((~c&tb)|(~tb&c))
         return a|b
+题目：构建乘积数组
+看我的剑指OFFER总结
+题目：滑动窗口的最大值
+看我的剑指OFFER总结
+题目：第k小(大)的数 Kth largerest
+def findKthLargest(self, nums: List[int], k: int) -> int:
+        if nums==[]:
+            return None
+        return sorted(nums)[len(nums)-k]
+ 题目：奇偶排序
