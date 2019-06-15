@@ -1,0 +1,23 @@
+快速排序
+参考链接：https://www.cnblogs.com/AlwinXu/p/5424905.html，看大话数据结构辅助理解
+def QuickSort(myList,start,end):
+    if start<end:#忘了写！！！！
+        i=start
+        j=end
+        key=myList[i]#对key的选择一般选第一个，但是要写成mylist[i]而不是mylist[0]!!!!!!!
+        while i<j:
+            while (i<j) and (myList[j]>=key):
+                j-=1
+            myList[i]=myList[j]
+            while (i<j) and (myList[i]<=key):
+                i+=1
+            myList[j]=myList[i]
+        myList[i]=key
+        QuickSort(myList,start,i-1)
+        QuickSort(myList,i+1,end)
+    return myList
+# 测试代码
+myList = [49,38,65,97,76,13,27,49]
+print("Quick Sort: ")
+QuickSort(myList,0,len(myList)-1)
+print(myList)
