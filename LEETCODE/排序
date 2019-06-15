@@ -1,4 +1,5 @@
 快速排序
+思路：在数列中取一个值，将数组中所有比它小的搬到前面，比它大的搬到后面
 参考链接：https://www.cnblogs.com/AlwinXu/p/5424905.html，看大话数据结构辅助理解
 def QuickSort(myList,start,end):
     if start<end:#忘了写！！！！
@@ -21,3 +22,30 @@ myList = [49,38,65,97,76,13,27,49]
 print("Quick Sort: ")
 QuickSort(myList,0,len(myList)-1)
 print(myList)
+堆排序
+参考链接https://blog.csdn.net/qq_34840129/article/details/80638225
+def siftdown(elems, e, begin, end):  # 向下筛选
+    i,j=begin,begin*2+1
+    while j<end:
+        if j+1<end and elems[j]>elems[j+1]:#改变elems[j]>elems[j+1]的<符号可以控制是大堆还是小堆
+            j+=1
+        if e<=elems[j]:#因为此时上一步的elems[j]还没有被重新赋值为e，所以拿e进行比较
+            break
+        elems[i]=elems[j]
+        i=j
+        j=j*2+1
+    elems[i]=e
+def heap_sort(elems):
+    end = len(elems)
+    for i in range(end//2-1,-1,-1):
+        siftdown(elems,elems[i],i,end)
+    #print(elems[0])
+    for i in range((end - 1), 0, -1):  # 进行堆排序.i最后一个值为1，不需要到0
+        print(elems)
+        e=elems[i]
+        elems[i]=elems[0]
+        elems[0]=e
+        siftdown(elems,elems[0],0,i)
+    return (elems)
+if __name__ == "__main__":
+    print(heap_sort([5, 6, 8, 1, 2, 4, 9]))
