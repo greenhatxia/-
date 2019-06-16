@@ -45,6 +45,9 @@ def removeKdigits(self, num, k):
 思路：先计算最多能组成的不重叠区间个数，然后用区间总个数减去不重叠区间的个数。
 在每次选择中，区间的结尾最为重要，选择的区间结尾越小，留给后面的区间的空间越大，那么后面能够选择的区间个数也就越大。
 按区间的结尾进行排序，每次选择结尾最小，并且和前一个区间不重叠的区间。        
+sort 与 sorted 区别：
+sort 是应用在 list 上的方法，sorted 可以对所有可迭代的对象进行排序操作。
+list 的 sort 方法返回的是对已经存在的列表进行操作，无返回值，而内建函数 sorted 方法返回的是一个新的 list，而不是在原来的基础上进行的操作。
 def eraseOverlapIntervals(self, intervals):
 """
 :type intervals: List[List[int]]
@@ -52,7 +55,7 @@ def eraseOverlapIntervals(self, intervals):
 """
     if not intervals:
         return 0
-    intervals.sort(key=lambda x:x[1])
+    intervals.sort(key=lambda x:x[1])#需要记住对sort的key的用法，必须用lambda匿名函数
     len1=len(intervals)
     pre=0
     result=1
