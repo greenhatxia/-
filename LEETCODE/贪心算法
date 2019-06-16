@@ -16,3 +16,49 @@ def maxSubArray(self, lists):
             if pre_sum > max_sum:
                 max_sum =  pre_sum
         return max_sum
+
+题目: remove k digits(感觉不属于贪心算法)
+看代码懂的思路：https://blog.csdn.net/fuxuemingzhu/article/details/81034522
+def removeKdigits(self, num, k):
+        """
+        :type num: str
+        :type k: int
+        :rtype: str
+        """
+        if len(num) == k:
+            return '0'
+        stack = []
+        for n in num:
+            while stack and k and int(stack[-1]) > int(n):
+                stack.pop()
+                k -= 1
+            stack.append(n)
+        while k:
+            stack.pop()
+            k -= 1
+        if not stack:
+            return '0'
+        return str(int("".join(stack)))#int的作用是把“0200”变成“200”，join只能对字符类型作用
+
+
+题目：Non-overlapping Intervals (Medium)-不重叠的区间个数
+思路：先计算最多能组成的不重叠区间个数，然后用区间总个数减去不重叠区间的个数。
+在每次选择中，区间的结尾最为重要，选择的区间结尾越小，留给后面的区间的空间越大，那么后面能够选择的区间个数也就越大。
+按区间的结尾进行排序，每次选择结尾最小，并且和前一个区间不重叠的区间。        
+def eraseOverlapIntervals(self, intervals):
+"""
+:type intervals: List[List[int]]
+:rtype: int
+"""
+    if not intervals:
+        return 0
+    intervals.sort(key=lambda x:x[1])
+    len1=len(intervals)
+    pre=0
+    result=1
+    for i in range(1,len(intervals)):
+        if intervals[i][0]>=intervals[pre][1]:
+            result+=1
+            pre=i
+
+    return len1 - result
