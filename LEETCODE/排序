@@ -49,3 +49,30 @@ def heap_sort(elems):
     return (elems)
 if __name__ == "__main__":
     print(heap_sort([5, 6, 8, 1, 2, 4, 9]))
+归纳排序
+思路可以看大话数据结构，代码参考https://www.cnblogs.com/Lin-Yi/p/7309143.html
+def merge_sort( li ):
+    if len(li)==1:
+        return li#一定要有return，因为函数里的操作无法对改变函数外的变量，但通过return传递结果，可以生成一个新的list来保存操作的结果,所以一定要有return
+    ll=len(li)
+    mid=ll>>1
+    left=merge_sort(li[:mid])#牢记list的切片，list[:3]不包含list[3]
+    right=merge_sort(li[mid:])
+    return merge(left,right)
+#这里接收两个列表
+def merge( left , right ):
+    result=[]
+    while len(left)>=1 and len(right)>=1:
+        if left[0]<right[0]:
+            result.append(left.pop(0))
+        else:
+            result.append(right.pop(0))
+    if len(left)>0:
+        result+=left
+    if len(right)>0:
+        result+=right
+    return result
+if __name__ == '__main__':
+    li = [5,4 ,3 ,2 ,1]
+    li2 = merge_sort(li)
+    print(li2)
