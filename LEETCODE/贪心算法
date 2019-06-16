@@ -1,5 +1,9 @@
 最大子序列之和
 代码来源https://blog.csdn.net/u010636181/article/details/78422169
+思路：时间复杂度O（n），遍历数组中的每个元素，先判断之前的子数组之和，
+如果小于0，则是有害的，重新开始建立子数组，否则，加上本次元素。
+每次遍历时，检查是否得到更大的子数组之和，若是则记录下。
+一共需要两个额外变量。
 def maxSubArray(self, lists):
         # write your code here
         max_sum = lists[0]
