@@ -1,0 +1,14 @@
+最大子序列之和
+代码来源https://blog.csdn.net/u010636181/article/details/78422169
+def maxSubArray(self, lists):
+        # write your code here
+        max_sum = lists[0]
+        pre_sum = 0
+        for i in lists:
+            if pre_sum < 0:
+                pre_sum = i
+            else:
+                pre_sum += i
+            if pre_sum > max_sum:
+                max_sum =  pre_sum
+        return max_sum
