@@ -1,0 +1,26 @@
+题目10：斐波那契数列
+def Fibonacci(self, n):
+    if n==0:
+        return 0
+    if n==1:
+        return 1
+    num1=0
+    num2=1
+    for i in range(2,n+1):#由于range，所以end要加1
+        sum1=num1+num2
+        num1=num2
+        num2=sum1
+    return sum1
+    青蛙跳台阶的答案和上述一样。
+变态青蛙跳台阶：
+一只青蛙一次可以跳上1级台阶，也可以跳上2级……它也可以跳上n级。求该青蛙跳上一个n级的台阶总共有多少种跳法。
+普通青蛙题目是前两项的叠加，变态青蛙是所有前面项的叠加，并加1（因为可以一次跳n阶）
+解法1：
+def solution(self,N):
+    res=[1,2]
+    while len(res)<N:
+        res.append(sum(res)+1)
+    return res[-1]
+解法2：
+def solution(self,N):
+    return 2**(N-1)
