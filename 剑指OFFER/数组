@@ -1,2 +1,35 @@
 已做：
 二维数组的查找
+调整数组顺序使奇数位于偶数前面
+思路看书很快就懂，可以在wcwing上练习。
+但剑指OFFER的要求多了稳定性，所以用冒泡法解决，
+代码来自https://www.nowcoder.com/profile/3004828/codeBookDetail?submissionId=9806504
+class Solution {
+public:
+    void reOrderArray(vector<int> &array) {
+ 
+         
+        for (int i = 0; i < array.size();i++)
+        {
+            for (int j = array.size() - 1; j>i;j--)
+            {
+                if (array[j] % 2 == 1 && array[j - 1]%2 == 0) //前偶后奇交换
+                {
+                    swap(array[j], array[j-1]);
+                }
+            }
+        }
+    }
+};
+我的PYTHON解法
+def reOrderArray(self, array):
+        # write code here
+        if array==[] or len(array)<=1:
+            return array
+        head =0
+        end=len(array)
+        for i in range(0,end):
+            for j in range(end-1,i,-1):
+                if array[j]%2==1 and array[j-1]%2==0:
+                    array[j],array[j-1]=array[j-1],array[j]
+        return array
