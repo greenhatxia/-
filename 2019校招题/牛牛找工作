@@ -1,0 +1,39 @@
+import sys
+task = {}
+line1 = sys.stdin.readline()
+m,n=map(int,line1.strip().split())
+lines=[]
+for i in range(m+1):
+    lines.append(sys.stdin.readline())
+job_index=[0 for i in range(m)]
+for index,line in enumerate(lines[0:-1]):
+    if not line.strip().split(): #存在空行，你能信...
+        continue
+    a,b = map(int,line.strip().split())
+    task[a] = max(task.get(a,0), b)
+    job_index[index]=a
+arr = sorted(job_index)
+#print(len(arr))
+for i in range(1, len(arr)):
+    if len(arr)<=1:
+        break
+    #print(len(arr))
+    if task[arr[i]] < task[arr[i -1]]:
+        task[arr[i]] = task[arr[i -1]]
+get={}
+skills = list(map(int, lines[-1].strip().split()))
+orders=sorted(skills)
+j=0
+for skill in orders:
+    if skill<job_index[0]:
+        get[skill]=0
+    else:
+        while skill>=job_index[j]:
+            if (j+1)==len(job_index):
+                get[skill] = task[job_index[j]]
+                break
+            else:
+                j+=1
+                get[skill]=task[job_index[j-1]]
+for skill in skills:
+    print(int(get[skill]))
