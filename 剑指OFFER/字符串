@@ -1,0 +1,28 @@
+替换空格
+方法一：
+体现剑指offer算法
+def replaceSpace(self, s):
+        s = list(s)#字符串不能修改，需要转换成list
+        l1 = len(s)
+        for i in range(len(s)):
+            if s[i] == ' ':
+                for o in range(2):
+                    s.append('0')
+        l2 = len(s)
+        j = l2 - 1
+        for i in range(l1 - 1, -1, -1):
+            if s[i] == ' ':
+                s[j] = '0'
+                j -= 1
+                s[j] = '2'
+                j -= 1
+                s[j] = '%'
+                j -= 1
+            else:
+                s[j] = s[i]
+                j -= 1
+        return(''.join(s))#有时候用return，有时候是print，记住''.join(list)来连接列表
+方法二：
+ def replaceSpace(self, s):
+        # write code here
+        return s.replace(' ', '%20')#记住replace用法
