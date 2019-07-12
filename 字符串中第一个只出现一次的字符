@@ -9,6 +9,28 @@ def FirstNotRepeatingChar(self, s):
             if s_dic[c] == 1:
                 return i
         return -1
+用字典实现get的功能，其他都一样
+def FirstNotRepeatingChar(self, s):
+        length = len(s)
+        if length == 0:
+            return -1
+        item = {}
+        for i in range(length):
+            if s[i] not in item.keys():
+                item[s[i]] = 1
+            else:
+                item[s[i]] += 1
+        for i in range(length):
+            if item[s[i]] == 1:
+                return i
+        return -1
+        
+        
+        
+        
+        
+               
+        
 使用Python函数的解法,用到了count和index函数
 def FirstNotRepeatingChar(self, s):     
       if len(s) < 1:
