@@ -1,3 +1,25 @@
+手写交换函数fun()
+class Solution:
+    def ReverseSentence(self, s):
+        if not s:
+            return ""
+        s=s.split(" ")#记得加上输入“ ”，否则默认分割会出错
+        s=self.fun(s)
+        s=' '.join(s)
+        return(s)    
+    def fun(self,s):
+        length = len(s)
+        start = 0
+        end = length - 1
+        while start < end:
+            a = s[end]
+            s[end] = s[start]
+            s[start] = a
+            end -= 1
+            start += 1
+        return(s)
+
+
 class Solution:
     def ReverseSentence(self, s):
         return " ".join(s.split(" ")[::-1])#[i:j:s]表示从i到j，步长-1
