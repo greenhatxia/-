@@ -58,3 +58,24 @@ class Solution:
             end-=1
             start+=1
         return s
+
+题目：正则表达式匹配
+def match(self, s, patten):
+        if len(s)==0 and len(patten)==0:
+            return True
+        elif len(s)!=0 and len(patten)==0:
+            return False
+        elif len(s)==0 and len(patten)!=0:
+            if len(patten)>1 and patten[1]=='*':
+                return self.match(s,patten[2:])
+            else:
+                return False
+        else:
+            if len(patten)>1 and patten[1]=='*':
+                if s[0]==patten[0] or (len(s)!=0 and patten[0]=='.'):
+                    return self.match(s,patten[2:]) or self.match(s[1:],patten) or self.match(s[1:],patten[2:])
+                else:
+                    return self.match(s,patten[2:])
+            if s[0]==patten[0] or patten[0]=='.':
+                return self.match(s[1:],patten[1:])
+            return False
