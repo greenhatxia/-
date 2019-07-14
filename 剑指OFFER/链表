@@ -1,0 +1,20 @@
+题目：从尾到头打印链表
+很简单，先得到正向，再翻转
+def printListFromTailToHead(self, listNode):
+        if not listNode:
+            return []
+        result=[]
+        while listNode:
+            result.append(listNode.val)
+            listNode=listNode.next
+        #下面的代码就是一个list翻转操作
+        length=len(result)
+        start=0
+        end=length-1
+        while start<end:
+            a=result[end]
+            result[end]=result[start]
+            result[start]=a
+            end-=1
+            start+=1
+        return result
