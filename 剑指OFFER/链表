@@ -34,3 +34,15 @@ def FindKthToTail(self, head, k):
             pbefore=pbefore.next
             pbehind=pbehind.next
         return pbehind
+题目：反转链表
+书上的思路143
+def ReverseList(self, p):
+        if not p:
+            return None
+        pre=None
+        while p:
+            pnext=p.next
+            p.next=pre
+            pre=p
+            p=pnext
+        return pre#返回的是pre
