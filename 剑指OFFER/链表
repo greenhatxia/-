@@ -18,3 +18,18 @@ def printListFromTailToHead(self, listNode):
             end-=1
             start+=1
         return result
+题目：链表中倒数第k个节点
+def FindKthToTail(self, head, k):
+        if head == None or k == 0:
+            return None
+        pbefore=head
+        pbehind=head
+        for i in range(k-1):#防止k大于链表长度
+            if pbefore.next!=None:
+                pbefore=pbefore.next
+            else:
+                return None
+        while pbefore.next!= None:
+            pbefore=pbefore.next
+            pbehind=pbehind.next
+        return pbehind
