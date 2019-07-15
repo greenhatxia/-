@@ -62,3 +62,34 @@ def Merge(self, p1, p2):
             p=p2
             p.next=self.Merge(p1,p2.next)
         return p
+题目：复杂链表的复刻
+根据书189改写成python，
+def Clone(self, p):
+        if not p:
+            return None
+        dummy = p
+        while dummy:
+            dnext=dummy.next
+            pcopy=RandomListNode(dummy.label)
+            pcopy.next=dnext
+            dummy.next=pcopy
+            dummy=pcopy.next
+        dummy=p
+        while dummy:
+            s=dummy.random
+            dnext=dummy.next
+            if dummy.random!=None:
+                dnext.random=s.next
+            dummy=dnext.next
+        dummy=p
+        copyHead=dummy.next#涉及对python赋值的理解，class是不可变对象（list、dict）
+        while dummy:
+            copyNode = dummy.next
+            dummynext = copyNode.next
+            dummy.next = dummynext
+            if dummynext:#判断原链表是否还有剩下节点
+                copyNode.next = dummynext.next
+            else:
+                copyNode.next = None
+            dummy = dummynext
+        return copyHead
