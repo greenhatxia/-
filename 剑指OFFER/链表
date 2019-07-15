@@ -93,3 +93,31 @@ def Clone(self, p):
                 copyNode.next = None
             dummy = dummynext
         return copyHead
+题目：链表中环的入口结点
+书上140的思路，我自己用python写了一遍
+def EntryNodeOfLoop(self, p):
+        # write code here
+        if (not p) or (not p.next):#至少2个节点才能构成回环
+            return None
+        slow,fast=p,p.next
+        while fast!=slow:
+            fast=fast.next
+            slow=slow.next
+            if fast!=None:
+                fast=fast.next
+            else:
+                return None
+        a=fast
+        fast=fast.next
+        count=1
+        while a!=fast:
+            count+=1#计算loop个数
+            fast=fast.next
+        start,end=p,p
+        while count:
+            count-=1
+            end=end.next
+        while end!=start:
+            end=end.next
+            start=start.next
+        return start
