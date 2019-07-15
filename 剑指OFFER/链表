@@ -46,3 +46,19 @@ def ReverseList(self, p):
             pre=p
             p=pnext
         return pre#返回的是pre
+        
+题目：合并两个排序的链表
+思路书上的147，采用递归，我想用循环没做出来
+def Merge(self, p1, p2):
+        if p1==None:
+            return p2
+        if p2==None:
+            return p1
+        p=None
+        if(p1.val<p2.val):
+            p=p1
+            p.next=self.Merge(p1.next,p2)
+        else:
+            p=p2
+            p.next=self.Merge(p1,p2.next)
+        return p
