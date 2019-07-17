@@ -121,3 +121,25 @@ def EntryNodeOfLoop(self, p):
             end=end.next
             start=start.next
         return start
+题目：删除链表中重复的节点
+代码来自https://www.nowcoder.com/questionTerminal/fc533c45b73a41b0b44ccba763f866ef
+def deleteDuplication(self, pHead):
+        # write code here
+        if pHead==None or pHead.next==None:
+            return pHead
+#创建了头结点指向第一个节点，这样第一个pre就有next属性，并且可以通过newHead.next返回第一个结点位置
+        newHead=ListNode(-1)
+        newHead.next=pHead
+        pre=newHead
+        p=pHead
+        while p and p.next:
+            nex=p.next
+            val=p.val
+            if p.val==nex.val:
+                while p and p.val==val:
+                    p=p.next
+                pre.next=p#处理重复的情况时不用修改pre
+            else:
+                pre=p
+                p=nex
+        return newHead.next
