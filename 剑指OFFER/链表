@@ -143,3 +143,16 @@ def deleteDuplication(self, pHead):
                 pre=p
                 p=nex
         return newHead.next
+题目：重建二叉树
+书上思路63，代码来源https://www.nowcoder.com/questionTerminal/8a19cbe657394eeaac2f6ea9b0f6fcf6
+def reConstructBinaryTree(self, pre, tin):
+        if len(pre) == 0:
+            return None
+        elif len(pre) == 1:
+            return TreeNode(pre[0])
+        else:
+            root = TreeNode(pre[0])
+            pos = tin.index(pre[0])#可用enumerate
+            root.left = self.reConstructBinaryTree(pre[1:pos+1], tin[:pos])
+            root.right = self.reConstructBinaryTree(pre[pos+1:], tin[pos+1:])
+        return root
