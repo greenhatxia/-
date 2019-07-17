@@ -148,8 +148,6 @@ def deleteDuplication(self, pHead):
 def reConstructBinaryTree(self, pre, tin):
         if len(pre) == 0:
             return None
-        elif len(pre) == 1:
-            return TreeNode(pre[0])
         else:
             root = TreeNode(pre[0])
             pos = tin.index(pre[0])#可用enumerate
