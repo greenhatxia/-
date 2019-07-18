@@ -120,3 +120,30 @@ def Print(self, root):
                 cur=next
                 next=0
         return final
+题目：二叉树中和为某一值的路径
+思路书上184
+代码https://www.nowcoder.com/questionTerminal/b736e784e3e34731af99065031301bca
+def FindPath(self, root, expect):
+        if not root:
+            return []
+        result=[]
+        path=[]
+        def find(root,path,currentsum):
+            path.append(root)
+            currentsum+=root.val
+            if currentsum==expect and (not root.left) and (not root.right):
+                #如果直接result.append(path)，
+                #因为append是添加引用，下面的path.pop()最终会把path清空，会得到[]
+                copy=[]#[]是一个新的对象，所以换了一个地址，不会覆盖之前的copy
+                for i in path:
+                    copy.append(i.val)
+                result.append(copy)
+            if currentsum<expect:
+                if root.left:
+                    find(root.left,path,currentsum )
+                if root.right:
+                    find(root.right,path,currentsum )
+            #currentsum是不可变量，所以不需要currentsum-=root.val
+            path.pop()
+        find(root,path,0)
+        return result
