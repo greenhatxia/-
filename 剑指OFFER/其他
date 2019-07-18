@@ -38,3 +38,54 @@ def Mirror(self, root):
         root.right=tmp
         self.Mirror(root.left)
         self.Mirror(root.right)
+题目：从上往下打印二叉树
+书上172的思路，https://cuijiahua.com/blog/2017/12/basis_22.html的代码
+def PrintFromTopToBottom(self, root):
+        if not root:
+            return []
+        result = []
+        tmp = [root]
+        while len(tmp):
+            cur = tmp.pop(0)
+            result.append(cur.val)#返回的是val值得list
+            if cur.left:
+                tmp.append(cur.left)
+            if cur.right:
+                tmp.append(cur.right)
+        return result
+进阶：分行从上往下打印二叉树
+思路来自书上174，就是上面代码的基础上增加了两个变量进行判断
+创建二维list：
+result=[]
+final=[]
+for i in range(4):
+    for j in range(4):
+        result.append(i*4+j)
+    final.append(result)
+    result=[]
+print(final)
+结果：[[0, 1, 2, 3], [4, 5, 6, 7], [8, 9, 10, 11], [12, 13, 14, 15]]
+def printFromTopToBottom(self, root):
+        if not root:
+            return []
+        tmp=[root]
+        result=[]
+        cur=1
+        next=0
+        final=[]
+        while tmp:
+            a=tmp.pop(0)
+            cur-=1
+            result.append(a.val)
+            if a.left:
+                next+=1
+                tmp.append(a.left)
+            if a.right:
+                next+=1
+                tmp.append(a.right)
+            if cur==0:
+                final.append(result)#记住这种创建二维list的方法！！！！
+                result=[]#记得清空！！！！！！
+                cur=next
+                next=0
+        return final
