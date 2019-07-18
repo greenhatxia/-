@@ -34,3 +34,22 @@ def HasSubtree(self, pRoot1, pRoot2):
         if pRoot1.val != pRoot2.val:#比较的是val，不能if p1!=p2
             return False
         return self.DoesTree1haveTree2(pRoot1.left, pRoot2.left) and self.DoesTree1haveTree2(pRoot1.right, pRoot2.right)
+题目：平衡二叉树
+算法复杂度O(N)即书中的第二种方法，从下往上
+链接：https://www.nowcoder.com/questionTerminal/8b3b95850edb4115918ecebdf1b4d222
+class Solution:
+    def IsBalanced_Solution(self, p):
+        # write code here
+        return self.dfs(p) != -1
+    def dfs(self, p):
+        if p is None:
+            return 0
+        left = self.dfs(p.left)
+        if left==-1:#判断左子树是否平衡
+            return -1
+        right = self.dfs(p.right)
+        if right==-1:#判断右子树是否平衡
+            return -1
+        if abs(left-right)>1:#判断本节点是否平衡
+            return -1
+        return max(left,right)+1#计算深度
