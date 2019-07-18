@@ -89,3 +89,34 @@ def printFromTopToBottom(self, root):
                 cur=next
                 next=0
         return final
+题目：按之字顺序打印二叉树
+#不要看书上的思路，分析打印的形状，即可发现和上一题的区别在于偶数行时进行翻转
+，所以只需要用一个even变量进行判断并翻转即可
+def Print(self, root):
+        if not root:
+            return []
+        tmp=[root]
+        result=[]
+        cur=1
+        next=0
+        final=[]
+        even=1#比上一个题唯一的改变
+        while tmp:
+            a=tmp.pop(0)
+            cur-=1
+            result.append(a.val)
+            if a.left:
+                next+=1
+                tmp.append(a.left)
+            if a.right:
+                next+=1
+                tmp.append(a.right)
+            if cur==0:
+                even=1-even
+                if even:
+                    result.reverse()
+                final.append(result)
+                result=[]
+                cur=next
+                next=0
+        return final
