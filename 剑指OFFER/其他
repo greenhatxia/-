@@ -23,3 +23,18 @@ def printMatrix(self, matrix):
                     result.append(matrix[endy-i][start])
             start+=1
         return result
+题目：二叉树的镜像
+思路在书上158，代码来自https://cuijiahua.com/blog/2017/12/basis_18.html
+python函数参数改不改变的问题
+python里有可变对象和不可变对象之分。只有传入的是不可变对象时，值才不发生改变，若是可变对象，就像c的指针，会改变参数。
+不可变对象：Number ,String , Tuple，bool
+可变对象： List , Set , Dictionary，class是可以改变内部的元素
+def Mirror(self, root):
+        # write code here
+        if not root or (root.left==None and root.right==None):
+            return None
+        tmp=root.left
+        root.left=root.right
+        root.right=tmp
+        self.Mirror(root.left)
+        self.Mirror(root.right)
