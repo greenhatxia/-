@@ -147,3 +147,9 @@ def FindPath(self, root, expect):
             path.pop()
         find(root,path,0)
         return result
+题目：二叉树的深度
+def TreeDepth(self, pRoot):
+        if pRoot is None:
+            return 0
+        count = max(self.TreeDepth(pRoot.left),self.TreeDepth(pRoot.right))+1
+        return count
