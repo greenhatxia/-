@@ -1,0 +1,25 @@
+题目：
+def printMatrix(self, matrix):
+        # write code here网
+        rows=len(matrix)
+        cols=len(matrix[0])
+        start=0
+        result=[]
+        if rows==0 and cols==0:
+            return matrix
+        while rows>(2*start) and cols>(2*start):
+            endx=cols-1-start
+            endy=rows-1-start
+            for i in matrix[start][start:endx+1]:
+                result.append(i)
+            if start<endy:
+                for i in range(start+1,endy+1):
+                    result.append(matrix[i][endx])
+            if start<endy and start<endx:
+                for i in range(start,endx):
+                    result.append(matrix[endy][endx-i-1])
+            if start+1<endy and start<endx:
+                for i in range(start+1,endy):
+                    result.append(matrix[endy-i][start])
+            start+=1
+        return result
