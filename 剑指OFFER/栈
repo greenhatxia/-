@@ -1,0 +1,46 @@
+题目：用两个栈实现队列
+链接：https://www.nowcoder.com/questionTerminal/54275ddae22f475981afa2244dd448c6
+def __init__(self):
+        self.stackA = []
+        self.stackB = []         
+    def push(self, node):
+        # write code here
+        self.stackA.append(node)       
+    def pop(self):
+        # return xx
+        if self.stackB:#处理pop-push-pop的情况
+            return self.stackB.pop()
+        elif not self.stackA:
+            return None
+        else:
+            while self.stackA:
+                self.stackB.append(self.stackA.pop())
+            return self.stackB.pop()
+题目：
+def isPopOrder(self, push, pop):
+        """
+        :type pushV: list[int]
+        :type popV: list[int]
+        :rtype: bool
+        """
+        if not push and not pop:
+            return True
+        if not push or not pop:
+            return False
+        if len(push)!= len(pop):
+            return False
+        length=len(push)
+        s=[]
+        i=0
+        k=0
+        while i<length:
+            s.append(push[i])
+            i+=1
+            while s and s[-1]==pop[k]:
+                s.pop()
+                k+=1
+        for p in pop:
+            if s and p==s[-1]:
+                s.pop()
+                
+        return s==[]
