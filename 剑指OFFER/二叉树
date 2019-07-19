@@ -250,3 +250,26 @@ class Solution:
         elif t =="#":
             self.index+=1
             return None
+题目：二叉搜索树的后序遍历序列
+书上180的思路，很简单，代码来自https://cuijiahua.com/blog/2017/12/basis_23.html
+def VerifySquenceOfBST(self, seq):
+        # write code here
+        if not seq:
+            return False
+        if len(seq)==1:
+            return True
+        length=len(seq)
+        i=0
+        while seq[i]<seq[-1]:
+            i+=1
+        k=i
+        while seq[k]>seq[-1]:
+            k+=1
+        if k!=length-1:
+            return False
+        left,right=True,True#如果是空列表，则是True，所以默认true
+        if len(seq[:i])>0:#避免出现空列表
+            left=self.VerifySquenceOfBST(seq[:i])
+        if len(seq[i:k]):
+            right=self.VerifySquenceOfBST(seq[i:k])
+        return left and right
