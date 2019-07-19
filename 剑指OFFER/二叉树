@@ -197,3 +197,19 @@ def GetNext(self, pNode):
                 return pNode.next
             pNode = pNode.next#沿着父节点向上遍历
         return  #到了根节点仍没找到，则返回空
+题目：对称的二叉树
+链接：https://www.nowcoder.com/questionTerminal/ff05d44dfdb04e1d83bdbdab320efbcb
+def isSymmetrical(self, pRoot):
+        if not pRoot:
+            return True
+        return self.compare(pRoot.left, pRoot.right)
+ 
+    def compare(self, pRoot1, pRoot2):
+        if not pRoot1 and not pRoot2:
+            return True
+        if not pRoot1 or not pRoot2:
+            return False
+        if pRoot1.val == pRoot2.val:
+            if self.compare(pRoot1.left, pRoot2.right) and self.compare(pRoot1.right, pRoot2.left):
+                return True
+        return False
