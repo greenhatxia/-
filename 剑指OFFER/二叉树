@@ -273,3 +273,20 @@ def VerifySquenceOfBST(self, seq):
         if len(seq[i:k]):
             right=self.VerifySquenceOfBST(seq[i:k])
         return left and right
+题目：二叉搜索树的第k个结点
+解法：中序遍历将节点存于列表，如果列表长度等于k就可以返回
+代码来自https://www.nowcoder.com/questionTerminal/947f6eb80d944a84850b0538bf0ec3a5
+def KthNode(self, pRoot, k):
+        # write code here
+        result=[]
+        def xunhuan(p):#这样才能使用result，如果把xunhuan放在外面，则需要把result定义成self.result
+            if not p:
+                return 
+            xunhuan(p.left)
+            result.append(p)
+            xunhuan(p.right)
+        xunhuan(pRoot)
+        if len(result)<k or k<=0:
+            return None
+        else:
+            return result[k-1]
