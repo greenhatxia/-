@@ -213,3 +213,40 @@ def isSymmetrical(self, pRoot):
             if self.compare(pRoot1.left, pRoot2.right) and self.compare(pRoot1.right, pRoot2.left):
                 return True
         return False
+题目：序列化二叉树
+链接：https://www.nowcoder.com/questionTerminal/cf7e25aa97c04cc1a68c8f040e71fb84
+#思路：用什么方法无所谓，关键是输入一棵树，序列化为字符串，然后将字符串反序列化
+#还能还原为原来的那棵树。
+#在这里采取先序遍历
+class Solution:
+    def Serialize(self, root):
+        self.s = ''
+        self.sarializeCore(root)
+        return self.s
+    def sarializeCore(self,root):
+        if root is None:
+            self.s += "#,"
+            return
+        self.s += str(root.val)+","
+        self.sarializeCore(root.left)
+        self.sarializeCore(root.right)
+    def Deserialize(self, s):
+        if s is None:
+            return None
+        self.index = 0
+        s= s.split(',')
+        root = self.DeserializeCore(s)
+        return root 
+    def DeserializeCore(self,s):
+        t = s[self.index]
+        if t.isdigit():#有可能大于9，所以不能0<=int(s[self.index])<=9
+            root = TreeNode(int(t))
+            self.index +=1
+            left = self.DeserializeCore(s)
+            right = self.DeserializeCore(s)
+            root.left = left
+            root.right = right
+            return root
+        elif t =="#":
+            self.index+=1
+            return None
