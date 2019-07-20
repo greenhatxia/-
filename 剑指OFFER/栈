@@ -16,7 +16,8 @@ def __init__(self):
             while self.stackA:
                 self.stackB.append(self.stackA.pop())
             return self.stackB.pop()
-题目：
+题目：栈的压入、弹出序列
+代码：https://www.nowcoder.com/questionTerminal/d77d11405cc7470d82554cb392585106
 def isPopOrder(self, push, pop):
         """
         :type pushV: list[int]
