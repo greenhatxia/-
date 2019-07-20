@@ -25,3 +25,28 @@ def hasPath(self, matrix, rows, cols, path):
                 curlen-=1
                 visited[row*cols+col]=0
         return has
+题目：机器人的运动范围
+书上的93思路，和代码写成python
+def movingCount(self, threshold, rows, cols):
+        # write code here
+        self.threshold=threshold
+        if not rows or not cols:
+            return False
+        self.visit=[[0 for i in range(cols)] for j in range(rows)]
+        return self.count(rows,cols,0,0)
+    def count(self,rows,cols,x,y):
+        onecount=0
+        if 0<=x<rows and 0<=y<cols and not self.visit[x][y] and self.check(x,y):
+            self.visit[x][y]=1
+            onecount=1+self.count(rows,cols,x+1,y)+self.count(rows,cols,x-1,y)+self.count(rows,cols,x,y-1)+self.count(rows,cols,x,y+1)
+        return onecount
+    def check(self,x,y):
+        sum1=0
+        sum2=0
+        while x%10:
+            sum1+=x%10
+            x=x/10
+        while y%10:
+            sum2+=y%10
+            y=y/10
+        return (sum1+sum2)<=self.threshold
