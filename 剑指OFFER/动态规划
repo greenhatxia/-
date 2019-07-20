@@ -17,9 +17,9 @@ def Fibonacci(self, n):
 普通青蛙题目是前两项的叠加，变态青蛙是所有前面项的叠加，并加1（因为可以一次跳n阶）
 解法1：
 def solution(self,N):
-    res=[1,2]
-    while len(res)<N:
-        res.append(sum(res)+1)
+    res=[]
+    for i in range(num):
+        res.append(1+sum(res))
     return res[-1]
 解法2：
 def solution(self,N):
