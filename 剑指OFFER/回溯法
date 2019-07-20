@@ -1,0 +1,27 @@
+题目：矩阵中的路径
+思路：照着书上90的改写
+def hasPath(self, matrix, rows, cols, path):
+        # write code here
+        if not matrix or rows*cols<len(path):
+            return False
+        length=len(path)
+        visited=[0 for i in range(rows*cols)]
+        curlen=0
+        for i in range(rows):
+            for j in range(cols):
+                print(matrix[i*cols+j])
+                if True==self.path(matrix,rows,cols,i,j,visited,path,curlen):
+                    return True
+        return False
+    def path(self,matrix,rows,cols,row,col,visited,path,curlen):
+        if curlen==len(path):
+            return True
+        has=False
+        if  0<=row<rows and 0<=col<cols and matrix[row*cols+col]==path[curlen] and not visited[row*cols+col]:
+            curlen+=1
+            visited[row*cols+col]=1
+            has=self.path(matrix,rows,cols,row-1,col,visited,path,curlen) or self.path(matrix,rows,cols,row+1,col,visited,path,curlen) or self.path(matrix,rows,cols,row,col-1,visited,path,curlen) or self.path(matrix,rows,cols,row,col+1,visited,path,curlen)
+            if (not has):
+                curlen-=1
+                visited[row*cols+col]=0
+        return has
