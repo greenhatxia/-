@@ -43,3 +43,36 @@ class Solution:
                     result.append(matrix[start+endy-i][start])
             start+=1
         return result
+题目：最小的K个数
+书上209说partition比较难分析，记住即可，第一种方法复杂度O（n）
+def GetLeastNumbers_Solution(self, tinput, k):
+        # write code here
+        n = len(tinput)
+        if n<=0 or k>n:
+            return []
+        if k<=0:#一定要判断，否则超时
+            return []
+        start = 0
+        end = n-1
+        index=self.partition(tinput,start,end)
+        while index!=k-1:
+            if index>k-1:
+                index=self.partition(tinput,start,index-1)
+            else:
+                
+                index=self.partition(tinput,index+1,end)
+        return sorted(tinput[:k])
+    def partition(self,tinput,start,end):#记好这个函数
+        if end<=start:
+            return start
+        base=tinput[start]
+        while start<end:
+            while start<end and tinput[end]>=base:
+                end-=1
+            tinput[start]=tinput[end]
+            while start<end and tinput[start]<=base:
+                start+=1
+            tinput[end]=tinput[start]
+        tinput[start]=base
+        return start
+第二种方法：适用于海量数据处理
