@@ -77,6 +77,9 @@ def GetLeastNumbers_Solution(self, tinput, k):
         return start
 第二种方法：适用于海量数据处理
 背住heapq这个库，思路可以看书211。
+堆的逻辑结构就是完全二叉树，并且二叉树中父节点的值小于等于该节点的所有子节点的值。
+这种实现可以使用 heap[k] <= heap[2k+1] 并且 heap[k] <= heap[2k+2] 
+（其中 k 为索引，从 0 开始计数）的形式体现，对于堆来说，最小元素即为根元素 heap[0]。
 import heapq
 class Solution:
     def GetLeastNumbers_Solution(self, alist, k):
