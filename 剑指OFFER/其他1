@@ -80,6 +80,8 @@ def GetLeastNumbers_Solution(self, tinput, k):
 堆的逻辑结构就是完全二叉树，并且二叉树中父节点的值小于等于该节点的所有子节点的值。
 这种实现可以使用 heap[k] <= heap[2k+1] 并且 heap[k] <= heap[2k+2] 
 （其中 k 为索引，从 0 开始计数）的形式体现，对于堆来说，最小元素即为根元素 heap[0]。
+时间复杂度O（logk*N），创建k个元素的堆，时间复杂度O（k）；每次从剩下的N-k个元素挑出分别和
+这个堆中的最大进行比较，并调整堆，复杂度为logk*（N-k）；两个过程的复杂度加起来就是O（logk*N）
 import heapq
 class Solution:
     def GetLeastNumbers_Solution(self, alist, k):
