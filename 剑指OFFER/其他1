@@ -76,3 +76,18 @@ def GetLeastNumbers_Solution(self, tinput, k):
         tinput[start]=base
         return start
 第二种方法：适用于海量数据处理
+背住heapq这个库，思路可以看书211。
+import heapq
+class Solution:
+    def GetLeastNumbers_Solution(self, alist, k):
+        max_heap = []
+        length = len(alist)
+        if not alist or k <= 0 or k > length:
+            return []
+        for ele in alist:
+            ele = -ele#heapq库是最小堆，所以要用取反来得到max_heap[0]是最大堆中的最大值
+            if len(max_heap) <k:
+                heapq.heappush(max_heap, ele)
+            else:
+                heapq.heappushpop(max_heap, ele)
+        return sorted([-i for i in max_heap])
