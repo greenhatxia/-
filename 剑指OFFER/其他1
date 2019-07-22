@@ -149,6 +149,7 @@ def GetUglyNumber_Solution(self, index):
             if nums[-1]==nums[index5]*5:
                 index5+=1
         return nums[-1]
+
 题目：和为S的连续正数序列
 思路书上282
 链接：https://www.nowcoder.com/questionTerminal/c451a3fd84b64cb19485dad758a55ebe
@@ -173,6 +174,7 @@ class Solution:
                 curSum -= small
                 small += 1         
         return res
+
 题目：和为S的两个数字
 输入一个递增排序的数组和一个数字S，在数组中查找两个数，使得他们的和正好是S，如果有多对数字的和等于S，输出两个数的乘积最小的（书里没要求最小，只说任意）。
 链接：https://www.nowcoder.com/questionTerminal/390da4f7a00f44bea7c2f3d19491311b
@@ -187,6 +189,7 @@ def FindNumbersWithSum(self, array, tsum):
         else:
             return [array[low], array[high]]
     return []  # 匹配失败返回空list
+    
 题目：扑克牌顺子
 链接：https://www.nowcoder.com/questionTerminal/762836f4d43d43ca9deb273b3de8e1f4
 这道题很简单，注意两点
@@ -205,6 +208,7 @@ def IsContinuous(self, numbers):
             if zeroNum < 0:
                 return False
     return True
+
 题目：求1+2+3+…+n
 直接记，送分题
 def Sum_Solution(self, n):
@@ -213,3 +217,18 @@ def Sum_Solution(self, n):
         temp=ans and self.Sum_Solution(n-1)#当n=0时,and后面的函数不用调用，temp=0
         ans=ans+temp
         return ans
+
+题目：不用加减乘除的加法
+def Add(self, num1, num2):
+        # write code here
+        MAX = 0x7fffffff
+        mask = 0xffffffff
+        while num2 != 0:
+            num1, num2 = (num1 ^ num2), ((num1 & num2) << 1)
+            num1 = num1 & mask
+            num2 = num2 & mask
+        return num1 if num1 <= MAX else ~(num1 ^ mask)
+扩展：不用额外空间交换变量
+a=a+b
+b=a-b
+a=a-b
