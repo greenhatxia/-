@@ -187,3 +187,22 @@ def FindNumbersWithSum(self, array, tsum):
         else:
             return [array[low], array[high]]
     return []  # 匹配失败返回空list
+题目：扑克牌顺子
+链接：https://www.nowcoder.com/questionTerminal/762836f4d43d43ca9deb273b3de8e1f4
+这道题很简单，注意两点
+1、如果输入为空，返回false
+2、除了王的任何某个特定数值的牌出现两张或者更多，那么一定凑不齐顺子。
+思路，先统计王的数量，再把牌排序，如果后面一个数比前面一个数大于1以上，那么中间的差值就必须用王来补了。
+看王的数量够不够，如果够就返回true，否则返回false。
+def IsContinuous(self, numbers):
+ 
+    if not numbers:return False
+    numbers.sort()
+    zeroNum = numbers.count(0)
+    for i, v in enumerate(numbers[:-1]):# 注意！！！！！！到-1，但是不包括-1，类似range
+        if v != 0:
+            if numbers[i+1]==v:return False
+            zeroNum = zeroNum - (numbers[i + 1] - v) + 1#加1是因为顺子以步长1顺序递增
+            if zeroNum < 0:
+                return False
+    return True
