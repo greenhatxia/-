@@ -149,3 +149,27 @@ def GetUglyNumber_Solution(self, index):
             if nums[-1]==nums[index5]*5:
                 index5+=1
         return nums[-1]
+题目：和为S的连续正数序列
+思路书上282
+链接：https://www.nowcoder.com/questionTerminal/c451a3fd84b64cb19485dad758a55ebe
+class Solution:
+    def FindContinuousSequence(self, tsum):
+        if tsum < 3:
+            return []         
+        res = []
+        small = 1
+        big = 2
+        mid = (1 + tsum) / 2
+        curSum = small + big         
+        while small < mid:
+            if curSum == tsum:
+                res.append(range(small, big + 1))#使用range来表示整个子数列
+                curSum-=small
+                small +=1
+            elif curSum < tsum:
+                big += 1
+                curSum += big
+            else:
+                curSum -= small
+                small += 1         
+        return res
