@@ -210,6 +210,6 @@ def IsContinuous(self, numbers):
 def Sum_Solution(self, n):
         # write code here
         ans=n
-        temp=ans and self.Sum_Solution(n-1)
+        temp=ans and self.Sum_Solution(n-1)#当n=0时,and后面的函数不用调用，temp=0
         ans=ans+temp
         return ans
