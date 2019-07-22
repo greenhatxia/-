@@ -126,3 +126,26 @@ def NumberOf1Between1AndN_Solution(self, n):
             count += (a+8) / 10 * i + (a % 10 == 1)*(b + 1)
             i *= 10
         return count
+题目：丑数
+def GetUglyNumber_Solution(self, index):
+        # write code here
+        if index<=0:
+            return 0
+        nums=[]
+        index2=0
+        index3=0
+        index5=0
+        nums.append(1)
+        while len(nums)<index:
+            num=sorted([nums[index2]*2,nums[index3]*3,nums[index5]*5])
+            for i in num:
+                if i>nums[-1]:
+                    nums.append(i)
+                    break
+            if nums[-1]==nums[index2]*2:
+                index2+=1
+            if nums[-1]==nums[index3]*3:
+                index3+=1
+            if nums[-1]==nums[index5]*5:
+                index5+=1
+        return nums[-1]
