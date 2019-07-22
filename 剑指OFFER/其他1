@@ -96,3 +96,33 @@ class Solution:
             else:
                 heapq.heappushpop(max_heap, ele)
         return sorted([-i for i in max_heap])
+题目：整数中1出现的次数
+思路：https://cuijiahua.com/blog/2017/12/basis_31.html不是书上的思路
+思路为对于1，10，100每个位，计算在该位1出现的次数
+对于求k在该位出现的次数，本题k为1，分为x<k,x=k,x>k（0<x<9）三种情况
+def NumberOf1Between1AndN_Solution(self, n):
+        # write code here
+        count=0
+        i=1
+        while i<=n:
+            a=n/i
+            b=n%i
+            if (a%10==1):#a%10就是该位x，这里是x==k的情况
+                count+=(a/10*i)+b+1
+            elif (a%10==0):
+                count+=(a/10*i)
+            else:
+                count+=(a/10+1)*i
+            i*=10
+        return count
+用一句代码概括三种条件
+def NumberOf1Between1AndN_Solution(self, n):
+        # write code here
+        count = 0
+        i = 1
+        while i <= n:
+            a = n / i
+            b = n % i
+            count += (a+8) / 10 * i + (a % 10 == 1)*(b + 1)
+            i *= 10
+        return count
