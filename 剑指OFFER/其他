@@ -153,3 +153,28 @@ def TreeDepth(self, pRoot):
             return 0
         count = max(self.TreeDepth(pRoot.left),self.TreeDepth(pRoot.right))+1
         return count
+题目：滑动窗口的最大值
+思路 https://cuijiahua.com/blog/2018/02/basis_64.html
+代码原文：https://blog.csdn.net/qq_20141867/article/details/81088705 
+本题最简单的做法是定义一个求最大值的max函数，窗口每一次滑动求窗口内最大值，
+这种做法的时间复杂度为O((n−k−1)(k−1))=O(nk)O((n−k−1)(k−1))=O(nk)，k是滑动窗口大小。
+class Solution:
+    def maxInWindows(self, num, size):
+        # write code here
+        # 存放可能是最大值的下标
+        maxqueue = []
+        # 存放窗口中最大值
+        maxlist = []
+        n = len(num)
+        # 参数检验
+        if n == 0 or size == 0 or size > n:
+            return maxlist
+        for i in range(n):
+            if len(maxqueue) > 0 and i - size >= maxqueue[0]:# 判断队首下标对应的元素是否已经滑出窗口
+                maxqueue.pop(0)
+            while len(maxqueue) > 0 and num[i] > num[maxqueue[-1]]:
+                maxqueue.pop()
+            maxqueue.append(i)
+            if i >= size - 1:#达到窗口内元素数量才开始找窗口最大值
+                maxlist.append(num[maxqueue[0]])
+        return maxlist
