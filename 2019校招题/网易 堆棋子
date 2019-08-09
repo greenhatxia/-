@@ -18,21 +18,19 @@ x_cords = [i for i in map(int, input().split())]
 y_cords = [j for j in map(int, input().split())]
 #根据棋子可能出现的位置范围而初始化，题意棋子的横坐标x[i](1 ≤ x[i] ≤ 10^9
 results = [99999999] * n
- 
 for x_cord in x_cords:
     for y_cord in y_cords:
         accumulator = 0
         dis_list=[]
         accumulator=0
-        for k in range(length):
+        for k in range(len(x_cords)):
             #选定x坐标=x[i],y坐标=[j]的位置，计算将棋子从初始化位置移动到该位置所需步数
-            temp.append(abs(x[i]-x[k])+abs(y[j]-y[k]))
+            dis_list.append(abs(x_cord-x_cords[k])+abs(y_cord-y_cords[k]))
         #排序的目的：根据选定的位置，所有棋子移动到该位置所需步数的排序，从而选出results[i]的候选者
-        temp.sort()
+        dis_list.sort()
         for i in range(n):
             #accumulator表示当选定某个位置作为放置的位置时，每多放一个棋子（步数为dis_list[i]），并加上之前的步数，需要的总步数
             accumulator += dis_list[i]
             results[i] = min(accumulator,results[i]) #results[i]是之前记录的该位置的最优解
-#坑！！！题目要求输出整型，然而提交时却发现要str型，并用‘ ’连接
-print(' '.join(map(str, results))
+print(' '.join(map(str, results)))
 代码链接：https://blog.csdn.net/qq_34617032/article/details/78578936
