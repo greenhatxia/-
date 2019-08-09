@@ -1,4 +1,6 @@
-先从一维角度考虑，结合https://blog.csdn.net/u010429424/article/details/77198486的思路
+先从一维角度考虑，
+结合https://blog.csdn.net/u010429424/article/details/77198486
+https://www.jianshu.com/p/72ee136ca54d
 首先需要理解棋子放置的最优解只能出现在：
 当棋子是偶数时，最优解是中间两个棋子位置的中心或者中间两个棋子的初始化时的棋子位置
 并且两个棋子位置的中心也可以转化为中间两个棋子；
