@@ -1,0 +1,35 @@
+先从一维角度考虑，结合https://blog.csdn.net/u010429424/article/details/77198486的思路
+首先需要理解棋子放置的最优解只能出现在：
+当棋子是偶数时，最优解是中间两个棋子位置的中心或者中间两个棋子的初始化时的棋子位置
+并且两个棋子位置的中心也可以转化为中间两个棋子；
+当棋子数是奇数时，最优解是中间那个棋子；
+总结就是棋子放置的最优解必然出现在初始化时的棋子位置
+
+接着考虑二维情况：
+由于x，y是独立的，我们只需把他当做两个一维情况考虑即可；
+和一位不同的是，
+二维的目标变成找两个坐标的和的最优解，
+并且最优解的位置可能不是初始化时的棋子位置，而是初始化时的棋子A的x坐标和棋子B的y坐标的结合，
+因此我们需要遍历所有x，y坐标的结合。
+n = int(input())
+x_cords = [i for i in map(int, input().split())]
+y_cords = [j for j in map(int, input().split())]
+#根据棋子可能出现的位置范围而初始化，题意棋子的横坐标x[i](1 ≤ x[i] ≤ 10^9
+results = [99999999] * n
+ 
+for x_cord in x_cords:
+    for y_cord in y_cords:
+        accumulator = 0
+        dis_list=[]
+        accumulator=0
+        for k in range(length):
+            #选定x坐标=x[i],y坐标=[j]的位置，计算将棋子从初始化位置移动到该位置所需步数
+            temp.append(abs(x[i]-x[k])+abs(y[j]-y[k]))
+        temp.sort()
+        for i in range(n):
+            #accumulator表示当选定某个位置作为放置的位置时，每多放一个棋子（步数为dis_list[i]），并加上之前的步数，需要的总步数
+            accumulator += dis_list[i]
+            results[i] = min(accumulator,results[i]) #results[i]是之前记录的该位置的最优解
+#坑！！！题目要求输出整型，然而提交时却发现要str型，并用‘ ’连接
+print(' '.join(map(str, results))
+代码链接：https://blog.csdn.net/qq_34617032/article/details/78578936
