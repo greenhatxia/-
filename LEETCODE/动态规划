@@ -1,0 +1,11 @@
+LeetCode 338 Counting Bits
+这道题比较特别的地方是它要你计算从0到n的所有数的二进制形式的1的个数。这个时候很容易想到可以用动态规划来做，
+即某个数可以用前面的数得到的结果根据某种特点得到它。这道题要我们计算二进制的1的个数，
+我们可以通过i/2的数的1的个数再加上它的最后一位得到。 
+这种做法的时间复杂度是O(n)，空间复杂度是O(1)
+思路https://blog.csdn.net/westbrook1998/article/details/80152822
+def countBits(self, num: int) -> List[int]:
+        res=[0]*(num+1)
+        for i in range(1,num+1):
+            res[i]=res[i&(i-1)]+1
+        return res
