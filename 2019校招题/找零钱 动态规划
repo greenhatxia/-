@@ -18,3 +18,14 @@ def coinChange(self, coins: List[int], amount: int) -> int:
         if dp[amount]==(amount+1):
             dp[amount]=-1
         return(dp[-1])
+
+题目2：找零的方案数
+题目描述：想兑换100元钱，有1,2,5,10四种钱，问总共有多少兑换方法
+https://blog.csdn.net/callinglove/article/details/46421959
+容易理解但是会超时的方法
+def change(self, amount: int, coins: List[int]) -> int:
+        if amount==0:
+            return 1
+        if amount<0 or len(coins)==0:
+            return 0
+        return self.change(amount-coins[-1],coins)+self.change(amount,coins[:-1])
