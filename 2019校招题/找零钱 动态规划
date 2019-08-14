@@ -29,3 +29,8 @@ def change(self, amount: int, coins: List[int]) -> int:
         if amount<0 or len(coins)==0:
             return 0
         return self.change(amount-coins[-1],coins)+self.change(amount,coins[:-1])
+必须使用动态规划的思路，参考https://buptwc.com/2018/07/10/Leetcode-518-Coin-Change-2/
+https://www.cnblogs.com/lightwindy/p/8674222.html
+自己列出例子进行推导更好理解
+注意是将硬币面额放在外循环
+
