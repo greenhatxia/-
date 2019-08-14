@@ -33,4 +33,12 @@ def change(self, amount: int, coins: List[int]) -> int:
 https://www.cnblogs.com/lightwindy/p/8674222.html
 自己列出例子进行推导更好理解
 注意是将硬币面额放在外循环
-
+def change(self, amount, coins):
+        dp = [0] * (amount + 1)
+        dp[0] = 1
+        for c in coins:
+            for x in range(c, amount + 1):
+                #>=的等于是因为x-c=0，而dp[0]=1,表示刚好被一个硬币找零
+                if x>=c:
+                    dp[x] += dp[x - c]
+        return dp[amount]　
