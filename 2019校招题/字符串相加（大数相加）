@@ -1,0 +1,19 @@
+题目来自leetcode https://leetcode.com/problems/add-strings/submissions/
+代码来自leetcode讨论https://leetcode.com/problems/add-strings/discuss/90474/straightforward-python-solution
+使用ord得出Unicode数值，
+>>>ord('a')
+97
+对每一位字符串的位，从右到左相加，并保存进位carry留在下一位的相加
+def addStrings(self, num1, num2):
+        num1, num2 = list(num1), list(num2)
+        carry, res = 0, []
+        while len(num2) > 0 or len(num1) > 0 or carry:
+            n1 = ord(num1.pop())-ord('0') if len(num1) > 0 else 0
+            n2 = ord(num2.pop())-ord('0') if len(num2) > 0 else 0
+            temp = n1 + n2 + carry 
+            res.append(temp % 10)
+            #python中/和//的区别
+            #python中除号用/表示，但是和C语言不同的是/得到的值总是浮点数，例如：5 / 5结果是1.0。
+            #python中整除用//表示是，//表示两数相除，向下取整，例如8 // 5 结果是1。
+            carry = temp // 10
+        return ''.join([str(i) for i in res])[::-1]
