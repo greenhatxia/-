@@ -17,3 +17,27 @@ def addStrings(self, num1, num2):
             #python中整除用//表示是，//表示两数相除，向下取整，例如8 // 5 结果是1。
             carry = temp // 10
         return ''.join([str(i) for i in res])[::-1]
+
+大数相乘
+使用分治Karatsuba写的代码如下，
+思路来自https://pythonandr.com/2015/10/13/karatsuba-multiplication-algorithm-python-code/
+虽然速度反而更慢
+def multiply(self, x: str, y: str) -> str:
+        if int(x)<10 or  int(y)<10:
+            return str(int(x)*int(y))
+        else:
+            n = max(len(str(int(x))),len(str(int(y))))
+            nby2 = n // 2
+            x,y=int(x),int(y)
+            a = x // 10**(nby2)
+            b = x % 10**(nby2)
+            c = y // 10**(nby2)
+            d = y % 10**(nby2)
+            ac = self.multiply(a,c)
+            ac=int(ac)
+            bd = self.multiply(b,d)
+            bd=int(bd)
+            ad_plus_bc = int(self.multiply(a+b,c+d)) - ac - bd
+                # this little trick, writing n as 2*nby2 takes care of both even and odd n
+            prod = ac * 10**(2*nby2) + (ad_plus_bc * 10**nby2) + bd
+            return str(prod)
