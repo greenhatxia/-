@@ -1,0 +1,17 @@
+思路来自算法导论 224页
+代码参考https://blog.csdn.net/littlethunder/article/details/25637173
+打印路线就是多用了一个flag矩阵保存“ok”“left”“up”
+def longestCommonSubsequence(self, t1: str, t2: str) -> int:
+        l1=len(t1)
+        l2=len(t2)
+        t1=list(t1)
+        t2=list(t2)
+        #注意count矩阵的长宽要加1
+        count=[[0 for j in range(l2+1)] for i in range(l1+1)]
+        for i in range(l1):
+            for j in range(l2):
+                if t1[i]==t2[j]:
+                    count[i+1][j+1]=count[i][j]+1
+                else:
+                    count[i+1][j+1]=max(count[i][j+1],count[i+1][j])
+        return count[l1][l2]
