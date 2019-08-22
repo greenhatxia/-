@@ -1,0 +1,27 @@
+可以采用快速排序先排序，再找第K大，时间复杂度o（N*logn）
+更快的方法：采用快速排序的partition思路，时间复杂度是O(N*logK)，最差是O（N*k）
+class Solution:
+    def findKthLargest(self, nums: List[int], k: int) -> int:
+        length=len(nums)
+        start=0
+        end=length-1
+        split=self.par(nums,start,end,k)
+        while split!=(length-k):
+            if split>length-k:
+                end=split-1
+                split=self.par(nums,start,end,k)
+            else:
+                start=split+1
+                split=self.par(nums,start,end,k)
+        return nums[split]
+    def par(self,nums,start,end,k):
+        key=nums[start]
+        while start<end:
+            while nums[end]>=key and end>start:
+                end-=1
+            nums[start]=nums[end]
+            while nums[start]<=key and start<end:
+                start+=1
+            nums[end]=nums[start]
+        nums[start]=key
+        return start
