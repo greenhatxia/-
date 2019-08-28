@@ -1,0 +1,35 @@
+链接：https://www.nowcoder.com/questionTerminal/2e95333fbdd4451395066957e24909cc
+来源：牛客网
+
+有一个NxN整数矩阵，请编写一个算法，将矩阵顺时针旋转90度。
+
+给定一个NxN的矩阵，和矩阵的阶数N,请返回旋转后的NxN矩阵,保证N小于等于300。
+
+测试样例：
+[[1,2,3],[4,5,6],[7,8,9]],3
+返回：[[7,4,1],[8,5,2],[9,6,3]]
+
+左神363思路，要求空间为O(1)
+python代码
+class Rotate:
+    def rotateMatrix(self, mat, n):
+        # write code here
+        for i in range((n)>>1):
+            #j是每一外圈里的每个边界需要遍历的次数，注意i要乘以2
+            for j in range(n-1-2*i):
+                tem=mat[i][i+j]
+                mat[i][i+j]=mat[n-1-i-j][i]
+                mat[n-1-i-j][i]=mat[n-1-i][n-1-i-j]
+                mat[n-1-i][n-1-i-j]=mat[i+j][n-1-i]
+                mat[i+j][n-1-i]=tem
+        return mat
+若没有空间要求就更简单了
+链接：https://www.nowcoder.com/questionTerminal/2e95333fbdd4451395066957e24909cc
+来源：牛客网
+ for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<n;j++)
+            {
+                temp[j][n-1-i]=mat[i][j];               
+            }
+        }   
