@@ -1,0 +1,30 @@
+LEETCODE128. 最长连续序列https://leetcode-cn.com/problems/longest-consecutive-sequence/submissions/
+思路：书上的思路，我修改成2个merge
+class Solution:
+    def longestConsecutive(self, nums) :
+        if not nums:
+            return 0
+        count={}
+        res=1
+        for i in nums:
+            if i not in count.keys():
+                count[i]=1
+                if i-1 in count.keys():
+                    res=max(res,self.merge1(count,i-1,i))
+                if i+1 in count.keys():
+                    res=max(res,self.merge2(count,i,i+1))
+            #print(count)
+        return (res)
+    def merge1(self,count,left,right):
+        less=left-count[left]+1
+        length=count[less]+count[right]
+        count[less]=length
+        count[right]=length
+        return(length)
+    def merge2(self,count,left,right):
+        more=right+count[right]-1
+        length=count[more]+count[left]
+        count[more]=length
+        #这里和merge1不同，要考虑count[i]在merge1被修改了,不能只加1
+        count[left-count[left]+1]=length
+        return(length)
