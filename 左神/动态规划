@@ -28,3 +28,21 @@ class Solution:
         #这里和merge1不同，要考虑count[i]在merge1被修改了,不能只加1
         count[left-count[left]+1]=length
         return(length)
+
+题目：最小路径和
+https://leetcode-cn.com/problems/minimum-path-sum/submissions/
+思路来自书上187，改写为python
+def minPathSum(self, grid: List[List[int]]) -> int:      
+        m=len(grid)
+        n=len(grid[0])
+        path=[[0 for i in range(n)] for j in range(m)]
+        path[0][0]=grid[0][0]
+        for i in range(1,n):
+            path[0][i]=grid[0][i]+path[0][i-1]#在path上加而不是grid
+        for j in range(1,m):
+            path[j][0]=grid[j][0]+path[j-1][0]
+        for i in range(1,m):
+            for j in range(1,n):
+                path[i][j]=min(path[i-1][j],path[i][j-1])+grid[i][j]
+                #print(path)
+        return(path[m-1][n-1])
