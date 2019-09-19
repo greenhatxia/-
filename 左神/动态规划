@@ -84,3 +84,17 @@ def change(self, amount: int, coins: List[int]) -> int:
                 if j-coins[i]>=0:
                     dp[i][j]+=dp[i][j-coins[i]]
         return (dp[len(coins)-1][amount])
+机器人达到指定位置方法数
+书上的思路用python实现，但是牛客要求求模，所以通过率只有25%
+dp=[[0 for j in range(length+1)] for i in range(step+1)]
+dp[0][target]=1
+mod = 1e9+7
+for i in range(1,step+1):
+    for j in range(1,length+1):
+        if j==1:
+            dp[i][j]=dp[i-1][2]
+        elif j==length:
+            dp[i][j]=dp[i-1][length-1]
+        else:
+            dp[i][j]=(dp[i-1][j-1]+dp[i-1][j+1])%mod
+print (dp[step][cur])
