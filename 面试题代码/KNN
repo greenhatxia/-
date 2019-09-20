@@ -1,0 +1,34 @@
+书上19改写
+书上的输入都是numpy.array，注意它和list的操作方式有些不一样，不过两者可以互相转换
+def KNN(input,data,label,k):
+    input=[input for i in range(len(data))]
+    tem1=[[0 for i in range(len(input[0]))] for j in range(len(input))]
+    for i in range(len(input)):
+        for j in range(len(input[0])):
+            tem1[i][j]=input[i][j]-data[i][j]
+            tem1[i][j]=tem1[i][j]**2
+    tem2=[]
+    for i in range(len(data)):
+        tem2.append(sum(tem1[i]))
+    tem2=np.array(tem2)
+    #numpy才有argsort方法
+    tem3=tem2.argsort()
+    count={}
+    for i in range(len(tem3)):
+        key=label[tem3[i]]
+        if label[tem3[i]] in count:
+            count[key]+=1
+        else:
+            count[key]=1
+    max_val=0
+    for key in count.keys():
+        if count[key]>max_val:
+            max_key=key
+            max_val=count[key]
+    print(max_key)
+import numpy as np
+input=np.array([0,0,0])
+data=np.array([[1,1,2],[2,2,4]])
+label=np.array([1,2])
+k=1
+KNN(input,data,label,k)
