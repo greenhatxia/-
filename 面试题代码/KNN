@@ -32,3 +32,59 @@ data=np.array([[1,1,2],[2,2,4]])
 label=np.array([1,2])
 k=1
 KNN(input,data,label,k)
+书上188改写kmeans
+使用后处理来提高聚类性能步骤：
+1.记录每个数据群的误差平方和（即每个样本点到数据群中心的误差平方和）
+2.针对误差平方和最大的群，进行K=2的聚类；
+3.为了保持数据群总数不变，可以将两个数据群合并：
+（合并有两种方法：1.合并最近的数据群中心；2.合并使得误差平方和减小最多的两个数据群）
+from numpy import *
+def create(dataset,k):
+    n=dataset.shape[1]
+    clusters=zeros((k,n))
+    for i in range(n):
+        min1=min(dataset[:,i])
+        min1_array=ones((k,1))
+        max1=max(dataset[:,i])
+        #print(((max1-min1)*random.rand(k,1)).shape)
+        #print((min1_array*min1).shape)
+        #print(clusters[:,i].shape)
+        clusters[:,i]=(min1_array*min1).reshape(1,2)+((max1-min1)*random.rand(k,1)).reshape(1,2)
+    return clusters
+def cal_dic(a,b):
+    dic=sum((a-b)**2)
+    print(dic)
+    return dic
+def kmeans(dataset,k):
+    clusters=create(dataset,k)
+    print(clusters)
+    m=dataset.shape[0]
+    tag=[-1 for i in range(m)]
+    final_tag=[-1 for i in range(m)]
+    flag=True
+    #迭代停止的标志是数据点的㵀分配结果不再改变
+    while flag==True:
+        print(tag)
+        flag=False
+        for i in range(m):
+            final_dic=inf
+            for j in range(k):
+                dic=cal_dic(dataset[i],clusters[j])
+                if dic<final_dic:
+                    final_dic=dic
+                    tag[i]=j
+            #如果仍然有某个数据的tag改变，则需要继续迭代
+            if tag[i]!=final_tag[i]:
+                flag=True
+            final_tag[i]=tag[i]
+        for i in range(k):
+            res=[]
+            for j in range(m):
+                if tag[j]==i:
+                    res.append(dataset[j])
+            clusters[i]=mean(res)
+
+    #print(clusters)
+    return clusters,final_tag
+dataset=array([[1,1],[-1,-2]])
+print(kmeans(dataset,2))
