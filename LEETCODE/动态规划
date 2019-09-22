@@ -63,3 +63,19 @@ def rob(self, nums: List[int]) -> int:
     for i in range(2,len(nums)):
         res[i]=max(res[i-1],res[i-2]+nums[i])
     return res[-1]
+392.判断子序列
+def isSubsequence(self, s: str, t: str) -> bool:
+        a=0
+        b=0
+        for i in range(len(s)):
+            #i+1字符必须在t字符串里i字符出现的位置后面，所以用了指针b
+            for j in range(b,len(t)):
+                b+=1
+                if s[i]==t[j]:
+                    a+=1                  
+                    break
+        #用a指针判断
+        if a==len(s):
+            return True
+        else:
+            return False
