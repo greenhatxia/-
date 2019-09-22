@@ -36,3 +36,15 @@ def maxProfit(self, prices: List[int]) -> int:
             else:
                 res=max(res,prices[i]-buy)
         return res
+122。买卖股票II
+思路：贪心算法https://www.cnblogs.com/xingyunblog/p/8907084.html
+
+def maxProfit(self, prices: List[int]) -> int:
+    if len(prices) == 0:
+        return 0
+    res = 0
+    for i in range(len(prices)):
+        #同一天卖出后还可以买进，这样即使后面有更大的卖价也不会损失，总之在比买价低的价格出现之前将它卖掉。
+        if i+1<len(prices) and prices[i]<prices[i+1]:
+            res+=(prices[i+1]-prices[i])
+    return res
