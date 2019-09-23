@@ -19,6 +19,7 @@ def strStr(self, haystack: str, needle: str) -> int:
         return -1
 224.基本计算器
 思路https://zhuanlan.zhihu.com/p/80856496
+#将括号外的放进stack里，处理好括号内的项，再将括号外的从stack弹出与括号内的项进行计算。
 def calculate(self, s: str) -> int:
         res = 0
         stack = []
