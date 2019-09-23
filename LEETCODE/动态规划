@@ -92,3 +92,13 @@ class Solution {
         return N % 2 == 0;
     }
 }
+DP思路：dp[i]只要在[1,i-1]之间找到i%j==0,并且i-j先手失败的case，便能保证爱丽丝胜
+def divisorGame(self, N: int) -> bool:
+        #定义长度N+1的数组，储存0到N的DP
+        dp=[0 for i in range(N+1)]
+        for i in range(2,N+1):
+            for j in range(1,i):
+                if i%j==0 and dp[i-j]==0:
+                    dp[i]=1
+                    break
+        return dp[-1]
