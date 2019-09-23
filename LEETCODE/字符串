@@ -56,3 +56,4 @@ def calculate(self, s: str) -> int:
                 #会对括号之间的所有项进行计算
                 res += tmp * sign
         return res
+思路：将乘除项先求出，使得等式只剩下加减项，将这些项都放在stack里，最后进行计算
