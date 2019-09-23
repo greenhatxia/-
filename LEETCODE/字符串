@@ -1,0 +1,19 @@
+28.实现strstr()
+思路https://www.cnblogs.com/grandyang/p/4606696.html
+def strStr(self, haystack: str, needle: str) -> int:
+        if  needle=="":
+            return 0
+        start=0
+        m=len(haystack)
+        n=len(needle)
+        for i in range(m-n+1):
+            #用h记录已出现子串长度
+            h=0
+            for j in range(n):
+                if needle[j]==haystack[i+j]:
+                    h+=1
+                else:
+                    break
+            if h==n:
+                return i
+        return -1
