@@ -168,3 +168,19 @@ def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
             else:
                 ans[tuple(count)]=[s]
         return ans.values()
+44通配符匹配
+https://zhuanlan.zhihu.com/p/65737469的动态规划
+dp[i][j]表示s到i位置,p到j位置是否匹配!
+
+初始化:
+
+dp[0][0]:什么都没有,所以为true
+第一行dp[0][j],换句话说,s为空,与p匹配,所以只要p开始为*才为true
+第一列dp[i][0],当然全部为False
+动态方程:
+如果(s[i] == p[j] || p[j] == "?") && dp[i-1][j-1] ,有dp[i][j] = true
+如果p[j] == "*" && (dp[i-1][j] = true || dp[i][j-1] = true)有dp[i][j] = true
+​ note:
+​ dp[i-1][j],表示*代表是空字符,例如ab,ab*
+​ dp[i][j-1],表示*代表非空任何字符,例如abcd,ab*
+
