@@ -163,6 +163,7 @@ def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
             for c in s:
                 count[ord(c) - ord('a')] += 1
             if tuple(count) in ans:
+                #由于list不能作为dict的key，所以转化为tuple即可
                 ans[tuple(count)].append(s)
             else:
                 ans[tuple(count)]=[s]
