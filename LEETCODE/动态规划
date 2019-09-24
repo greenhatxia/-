@@ -102,3 +102,28 @@ def divisorGame(self, N: int) -> bool:
                     dp[i]=1
                     break
         return dp[-1]
+题目5：最长回文串
+思路：建立dp[i][j]，i是串开头的位置，j是结尾位置，进行填表；
+第一个for处理的是n=1,2的情况，range(n-3,-1,-1)处理的是n>2的情况；
+每次更新动态表，都要检查if len>len(max_len)；
+def longestPalindrome(self, s: str) -> str:
+        max_len=""
+        n = len(s)
+        dp=[[0 for i in range(n)] for i in range(n)]
+        for i in range(n):
+            dp[i][i]=1
+            if len(s[i])>len(max_len):
+                   max_len=s[i]
+            if i<n-1 and s[i]==s[i+1]:
+                dp[i][i+1]=1
+                if len(s[i:i+2])>len(max_len):
+                    max_len=s[i:i+2]
+        #print(dp)
+        for i in range(n-3,-1,-1):
+            #j=i+1，i的情况在前面已经处理过
+            for j in range(i+2,n):
+                if s[i]==s[j] and dp[i+1][j-1]:
+                    dp[i][j]=1
+                    if len(s[i:j+1])>len(max_len):
+                        max_len=s[i:j+1]
+        return max_len
