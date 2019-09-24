@@ -120,3 +120,37 @@ def strStr(s) :
             l+=1
             r-=1
     return True
+91.解码方法
+思路https://zhuanlan.zhihu.com/p/61950266
+类似爬楼梯
+def numDecodings(self, s: str) -> int:
+        n=len(s)
+        dp=[0 for i in range(n)]
+        if s[0]=="0":
+            return 0
+        else:
+            dp[0]=1
+        if n<2:
+            return dp[0]
+        if 10<=int(s[:2])<=26:
+            if s[1]!="0":
+                dp[1]=2
+            else:
+                dp[1]=1
+        else:
+            if s[1]!="0":
+                dp[1]=1
+            else:
+                return 0
+        for i in range(2,n):
+            if 10<=int(s[i-1]+s[i])<=26:
+                if s[i]!="0":
+                    dp[i]=dp[i-1]+dp[i-2]
+                else:
+                    dp[i]=dp[i-2]
+            else:
+                if s[i]!="0":
+                    dp[i]=dp[i-1]
+                else:
+                    return 0
+        return dp[-1]
