@@ -94,3 +94,29 @@ def calculate(s) :
             #print(sign * i,stack)
             res = res + (sign * i)
     return res
+题目125 验证回文串
+只考虑字母和数字字符，可以忽略字母的大小写，所以忽略所有不是字母和数字的字符，并将大写字母转化为小写。
+思路https://zhuanlan.zhihu.com/p/68267699
+def strStr(s) :
+    def p(a):
+        if "A" <= a <= "Z":
+            a = chr(ord(a) - ord("A") + ord("a"))
+        return a
+
+    n = len(s)
+    if n == 0:
+        return True
+    l = 0
+    r = n - 1
+    while l < r:
+        #if语句使得while必须不断迭代，直至开头和结尾都只能是字母或数字
+        if not ("A"<=s[l]<="Z" or "0"<=s[l]<="9" or "a"<=s[l]<="z"):
+            l+=1
+        elif not ("A"<=s[r]<="Z" or "0"<=s[r]<="9" or "a"<=s[r]<="z"):
+            r-=1
+        else:
+            if p(s[l])!=p(s[r]):
+                return False
+            l+=1
+            r-=1
+    return True
