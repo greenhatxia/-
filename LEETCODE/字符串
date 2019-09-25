@@ -301,24 +301,20 @@ def lengthOfLongestSubstring(self, str: str) -> int:
             return len1
 20.有效的括号
 思路：官方答案https://leetcode-cn.com/problems/valid-parentheses/solution/you-xiao-de-gua-hao-by-leetcode/
-如果只有圆括号，则只需把字典中的括号改到只剩一种即可
-def isValid(self, s: str) -> bool:
-        stack = []
-        mapping = {")": "(", "}": "{", "]": "["}
-        # For every bracket in the expression.
-        for char in s:
-            # If the character is an closing bracket
-            if char in mapping:
-                # Pop the topmost element from the stack, if it is non empty
-                # Otherwise assign a dummy value of '#' to the top_element variable
-                top_element = stack.pop() if stack else '#'
-                # The mapping for the opening bracket in our hash and the top
-                # element of the stack don't match, return False
-                if mapping[char] != top_element:
+#如果题目只有圆括号，则只需把字典中的括号改到只剩一种即可
+#字典里只存右括号，每次迭代出现右括号，必然可以和stack里的一个左括号抵消，即出栈，否则return false；
+def isValid(self, str: str) -> bool:
+        stack=[]
+        way={")":"(","]":"[","}":"{"}
+        for i in str:
+            if i in way:
+                if  stack:
+                    top=stack.pop()
+                    if top!=way[i]:
+                        return False
+                #当有右括号，而stack是空时，即没有出现左括号可以抵消，return false
+                else:
                     return False
             else:
-                # We have an opening bracket, simply push it onto the stack.
-                stack.append(char)
-        # In the end, if the stack is empty, then we have a valid expression.
-        # The stack won't be empty for cases like ((()
+                stack.append(i)
         return not stack
