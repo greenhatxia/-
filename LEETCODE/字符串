@@ -282,3 +282,20 @@ def myAtoi(self, str: str) -> int:
                     return 2 ** 31 - 1
         except:
             return  0
+3.无重复字符的最长子串
+思路：书上300
+cur记录长度
+def lengthOfLongestSubstring(self, str: str) -> int:
+            if len(str)==0:
+                return 0
+            where={}
+            n=len(str)
+            pre=-1
+            len1=0
+            for i in range(n):
+                if str[i] in where:
+                    pre=max(pre,where[str[i]])
+                cur=i-pre
+                len1=max(len1,cur)
+                where[str[i]]=i
+            return len1
