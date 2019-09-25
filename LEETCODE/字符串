@@ -318,3 +318,5 @@ def isValid(self, str: str) -> bool:
             else:
                 stack.append(i)
         return not stack
+10正则表达式匹配
+思路：自底向上https://zhuanlan.zhihu.com/p/63005213
