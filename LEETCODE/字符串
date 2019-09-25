@@ -299,3 +299,26 @@ def lengthOfLongestSubstring(self, str: str) -> int:
                 len1=max(len1,cur)
                 where[str[i]]=i
             return len1
+20.有效的括号
+思路：官方答案https://leetcode-cn.com/problems/valid-parentheses/solution/you-xiao-de-gua-hao-by-leetcode/
+如果只有圆括号，则只需把字典中的括号改到只剩一种即可
+def isValid(self, s: str) -> bool:
+        stack = []
+        mapping = {")": "(", "}": "{", "]": "["}
+        # For every bracket in the expression.
+        for char in s:
+            # If the character is an closing bracket
+            if char in mapping:
+                # Pop the topmost element from the stack, if it is non empty
+                # Otherwise assign a dummy value of '#' to the top_element variable
+                top_element = stack.pop() if stack else '#'
+                # The mapping for the opening bracket in our hash and the top
+                # element of the stack don't match, return False
+                if mapping[char] != top_element:
+                    return False
+            else:
+                # We have an opening bracket, simply push it onto the stack.
+                stack.append(char)
+        # In the end, if the stack is empty, then we have a valid expression.
+        # The stack won't be empty for cases like ((()
+        return not stack
