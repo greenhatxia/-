@@ -253,3 +253,32 @@ def romanToInt(self, s: str) -> int:
             else:
                 res+=convert[s[i]]
         return res
+8字符串转换整数
+思路https://zhuanlan.zhihu.com/p/62875727
+def myAtoi(self, str: str) -> int:
+        str = str.strip()
+        res = ""
+        n = len(str)
+        i = 0
+        #已经去掉空格，剩下的只能有数字、非数字、正负号
+        #如果字符串是“+”或“—”，则int（+）会出错，return 0
+        if n>0 and str[i] in ["-","+"] and n > 1:
+            res += str[i]
+            i += 1
+        while i<n:
+            if "0"<=str[i]<="9":
+                res+=str[i]
+                i+=1
+            else:
+                break
+        try:
+            num = int(res)
+            if (-2 ** 31) <= num <= (2 ** 31 - 1):
+                return num
+            else:
+                if num < 0:
+                    return -2 ** 31
+                else:
+                    return 2 ** 31 - 1
+        except:
+            return  0
