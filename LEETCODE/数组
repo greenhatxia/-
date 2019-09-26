@@ -121,3 +121,29 @@ def sortArrayByParity(self, A: List[int]) -> List[int]:
             else:
                 even.append(i)
         return even+odd
+79单词搜索
+思路：剑指OFFER的矩阵中的路径
+287.寻找重复数，剑指offer40的思路
+def findDuplicate(self, nums: List[int]) -> int:
+        def c(nums, start, end):
+            cc = 0
+            for i in nums:
+                if i >= start and i <= end:
+                    cc += 1
+            return cc
+        if not nums:
+            return None
+        end=len(nums)-1
+        start=1
+        while start<=end:
+            middle = start + ((end - start) >> 1)
+            count=c(nums,start,middle)
+            if start==end:
+                if count>1:
+                    return start
+                else:
+                    return None
+            if count>(middle-start+1):
+                end=middle
+            else:
+                start=middle+1
