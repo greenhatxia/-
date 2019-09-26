@@ -320,3 +320,33 @@ def maxArea(self, height):
                 left += 1
                 right -= 1
         return max_wather
+三数之和
+def threeSum(self, nums: List[int]) -> List[List[int]]:
+        #排序；去除重复的数字
+        nums.sort()
+        n = len(nums)
+        res = []
+        #print(nums)
+        for i in range(n):
+            #必须nums[i] == nums[i - 1]，因为有可能丢解
+            if i >0 and nums[i] == nums[i - 1]:
+                continue
+            start = i + 1
+            end = n - 1
+
+            while start < end:
+                if nums[i] + nums[start] + nums[end] == 0:
+                    tem = [nums[i], nums[start], nums[end]]
+                    res.append(tem)
+                    #print(i,res)
+                    while start<n-1 and nums[start] == nums[start + 1]:
+                        start += 1
+                    while end>i+1 and nums[end] == nums[end - 1]:
+                        end -= 1
+                    start+=1
+                    end-=1
+                elif (nums[i] + nums[start] + nums[end]) < 0:
+                    start += 1
+                else:
+                    end -= 1
+        return res
