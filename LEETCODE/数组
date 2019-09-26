@@ -367,3 +367,6 @@ def removeDuplicates(self, nums: List[int]) -> int:
             slow += 1
             fast += 1
         return slow
+33.搜索旋转排序数组
+思路：题目中说明要用O(log n)能想到就是二分法!
+剑指OFFER思路，二分法
