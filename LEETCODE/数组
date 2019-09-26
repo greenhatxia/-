@@ -220,3 +220,19 @@ def maxProduct(self, nums: List[int]) -> int:
             maxs=max(max(tem1,nums[i]),tem2)
             res=max(res,maxs)
         return res
+118.杨辉三角
+思路https://zhuanlan.zhihu.com/p/72084179
+#中间项是根据上一行得出，每一行的左右两边是1，所以计算出中间项后在左右两边append（1）
+def generate(self, nums: int) -> List[List[int]]:
+        n=nums
+        res=[]
+        for i in range(n):
+            tem=[1]
+            if not res:
+                res.append(tem)
+            else:
+                for j in range(i-1):
+                    tem.append(res[i-1][j]+res[i-1][j+1])
+                tem.append(1)
+                res.append(tem)
+        return res
