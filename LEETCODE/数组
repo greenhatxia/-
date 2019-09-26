@@ -147,3 +147,15 @@ def findDuplicate(self, nums: List[int]) -> int:
                 end=middle
             else:
                 start=middle+1
+283.移动零
+思路：https://zhuanlan.zhihu.com/p/83960079
+def moveZeroes(self, nums: List[int]) -> None:
+        loc=0
+        for i in nums:
+            if i!=0:
+                nums[loc]=i
+                loc+=1
+        while loc<len(nums):
+            nums[loc]=0
+            loc+=1
+        return nums
