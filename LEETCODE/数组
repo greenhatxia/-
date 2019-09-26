@@ -201,3 +201,22 @@ def findPeakElement(self, nums: List[int]) -> int:
             if nums[i]>nums[i+1]:
                 return i
         return n-1
+152乘积最大子序列
+思路：左神402
+#所有子数组都会以某一个位置结束，迭代求出每一个位置结尾的子数组最大的累乘积
+#所有最大累乘积中挑出最大就是结果
+def maxProduct(self, nums: List[int]) -> int:
+        n=len(nums)
+        mins=nums[0]
+        maxs=nums[0]
+        res=nums[0]
+        for i in range(1,n):
+            #以i-1位置结尾获得的最大乘积可能在i位置变成最小乘积的乘法项（比如负数*正数）
+            #以i-1位置结尾获得的最小乘积可能在i位置变成最大乘积的乘法项（比如负数*负数）
+            tem1=nums[i]*mins
+            tem2=nums[i]*maxs
+            #在三种可能情况中取最值
+            mins=min(min(tem1,nums[i]),tem2)
+            maxs=max(max(tem1,nums[i]),tem2)
+            res=max(res,maxs)
+        return res
