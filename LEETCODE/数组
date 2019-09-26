@@ -192,3 +192,12 @@ def rotate(self, nums: List[int], k: int) -> None:
     k %= n
     for _ in range(k):
         nums.insert(0, nums.pop())
+162寻找峰值
+思路官方思路https://leetcode-cn.com/problems/find-peak-element/solution/xun-zhao-feng-zhi-by-leetcode/
+非常简单，只要理清峰值可能出现的三种情况即可：递减、递增、凸形（其实还有凹形）
+def findPeakElement(self, nums: List[int]) -> int:
+        n=len(nums)
+        for i in range(n-1):
+            if nums[i]>nums[i+1]:
+                return i
+        return n-1
