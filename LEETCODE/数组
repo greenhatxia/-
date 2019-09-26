@@ -353,3 +353,17 @@ def threeSum(self, nums: List[int]) -> List[List[int]]:
                 else:
                     end -= 1
         return res
+26. 删除排序数组中的重复项
+思路：采用快慢两个指针https://zhuanlan.zhihu.com/p/64238606
+def removeDuplicates(self, nums: List[int]) -> int:
+        slow = 0
+        fast = 0
+        n = len(nums)
+        while fast < n:
+            while fast < n - 1 and nums[fast] == nums[fast+1]:
+                fast += 1
+            #fast指针一直到最后一个重复的元素才停下
+            nums[slow] = nums[fast]
+            slow += 1
+            fast += 1
+        return slow
