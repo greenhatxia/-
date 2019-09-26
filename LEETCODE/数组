@@ -169,3 +169,26 @@ def missingNumber(self, nums: List[int]) -> int:
         for ids,num in enumerate(nums):
             res+=(ids-num)
         return res
+旋转数组
+给定一个数组，将数组中的元素向右移动 k 个位置，其中 k 是非负数。
+输入: [1,2,3,4,5,6,7] 和 k = 3
+输出: [5,6,7,1,2,3,4]
+解释:
+向右旋转 1 步: [7,1,2,3,4,5,6]
+向右旋转 2 步: [6,7,1,2,3,4,5]
+向右旋转 3 步: [5,6,7,1,2,3,4]
+def rotate(self, nums: List[int], k: int) -> None:
+        n=len(nums)
+        #处理k大于n的情况
+        k%=n
+        tem=[i for i in nums[n-k:]]
+        for i in range(n-k):
+            nums[n-1-i]=nums[n-k-1-i]
+        for i in range(k):
+            nums[i]=tem[i]
+        return nums
+def rotate(self, nums: List[int], k: int) -> None:
+    n = len(nums)
+    k %= n
+    for _ in range(k):
+        nums.insert(0, nums.pop())
