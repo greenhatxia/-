@@ -159,3 +159,13 @@ def moveZeroes(self, nums: List[int]) -> None:
             nums[loc]=0
             loc+=1
         return nums
+268缺失数字
+思路：关键在于索引号和 数建立关系https://zhuanlan.zhihu.com/p/82492980
+假如我们数组不缺任何数[0, 1, 2]，我们有0 - nums[0] + 1 - nums[1] + 2 - nums[2] = 0。即使我们打乱数据[2, 0, 1] ，
+在不缺少任何数字，不管我们如何打乱数组，我们都有每个数的索引号和该数相减的和都为零
+def missingNumber(self, nums: List[int]) -> int:
+        res=len(nums)
+        #nums的长度只有n（ids从0到n-1），所有res需要额外添加最后一个ids，即n
+        for ids,num in enumerate(nums):
+            res+=(ids-num)
+        return res
