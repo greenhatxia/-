@@ -275,3 +275,30 @@ def productExceptSelf(self, nums: List[int]) -> List[int]:
         #res[0]特殊处理，此时tem是nums[1:]的累乘积
         res[0]=tem
         return res
+289生命游戏
+#思路https://zhuanlan.zhihu.com/p/65193128
+暴力，速度还可以，思路就是用一个字典，key是坐标元组，储存状态
+非常简单，按照题意解题，记住思路即可，不需要重新练习代码
+def gameOfLife(self, board: List[List[int]]) -> None:
+        row, col =  len(board), len(board[0]) 
+        index={}
+        for i in range(row):
+            for j in range(col): 
+                #超出边界的细胞状态都算做0
+                judge=sum([sum(item[max(j-1,0):j+2]) for item in board[max(i-1,0):i+2]])-board[i][j] 
+ #唯一的技巧，用了list的列表解析不用写一大堆for循环了比较直观好看点
+#细胞的出生和死亡是同时发生的，所以需要记录中间状态              
+                if judge<2:
+                    index[(i,j)]=0
+                if judge==2:
+                    index[(i,j)]=1
+                if judge==3:
+                    index[(i,j)]=3
+                if judge>3:
+                    index[(i,j)]=0
+        for item in list(index.keys()):
+            #特殊情况是当judge==3时，绝对能存活；其他情况都是&&才能存活
+            if index[item]==3:
+                board[item[0]][item[1]]=1
+                continue
+            board[item[0]][item[1]]&=index[item]
