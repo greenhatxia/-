@@ -302,3 +302,21 @@ def gameOfLife(self, board: List[List[int]]) -> None:
                 board[item[0]][item[1]]=1
                 continue
             board[item[0]][item[1]]&=index[item]
+11. 盛最多水的容器
+思路：https://zhuanlan.zhihu.com/p/63005573
+def maxArea(self, height):
+        max_wather = 0
+        left = 0
+        right = len(height)-1
+        while left <= right:
+            #宽度right-left，高度min(height[left],height[right])
+            max_wather = max(max_wather,(right-left)*min(height[left],height[right]))
+            #由于必须减小容器宽度，选择高度低的那边
+            if height[left]<height[right]:
+                left += 1
+            elif height[left]>height[right]:
+                right -= 1
+            else:
+                left += 1
+                right -= 1
+        return max_wather
