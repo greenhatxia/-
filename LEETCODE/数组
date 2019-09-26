@@ -254,3 +254,24 @@ def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
         if j>0:
             for i in range(j):
                 nums1[i]=nums2[i]
+238. 除自身以外数组的乘积
+思路：左神410
+要求常数的空间复杂度（res是输出不算），且不能用除法。
+于是采用两个数组分别存储元素左边和右边的累乘积。
+使用一个数组实现上述功能。
+def productExceptSelf(self, nums: List[int]) -> List[int]:
+        n=len(nums)
+        res=[0 for i in range(n)]
+        res[0]=nums[0]
+        #两端的值需要特殊处理，其余都是元素左边和右边的累乘积
+        for i in range(1,n):
+            res[i]=res[i-1]*nums[i]
+        tem=1
+        #range（n-1）而不是range（n），即res[0]需要特殊赋值
+        for i in range(n-1):
+        #i=n-2时是对res[n-1]的特殊处理（没有右边累乘积）
+            res[n-1-i]=res[n-2-i]*tem
+            tem*=nums[n-1-i]
+        #res[0]特殊处理，此时tem是nums[1:]的累乘积
+        res[0]=tem
+        return res
