@@ -321,6 +321,9 @@ def maxArea(self, height):
                 right -= 1
         return max_wather
 三数之和
+思路：https://zhuanlan.zhihu.com/p/63424986
+15.固定一个值,找另外二个值它们和等于 0,
+如何找另外两个值,用的是双指针!
 def threeSum(self, nums: List[int]) -> List[List[int]]:
         #排序；去除重复的数字
         nums.sort()
@@ -328,7 +331,7 @@ def threeSum(self, nums: List[int]) -> List[List[int]]:
         res = []
         #print(nums)
         for i in range(n):
-            #必须nums[i] == nums[i - 1]，因为有可能丢解
+            #必须nums[i] == nums[i - 1]，不能nums[i+1]==nums[i],因为有可能丢解
             if i >0 and nums[i] == nums[i - 1]:
                 continue
             start = i + 1
