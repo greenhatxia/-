@@ -396,3 +396,31 @@ def searchRange(self, nums: List[int], target: int) -> List[int]:
             else:
                 right = mid - 1
         return res
+34. 在排序数组中查找元素的第一个和最后一个位置
+思路https://zhuanlan.zhihu.com/p/64950311
+在二分法进行时，就判读是否有等于 target 的，
+但是找到的 target 不知道是最左边的数还是最右边的数。
+所以，通过找到这个数再找出相应的边界值。(最差情况复杂度为 O(n))
+def searchRange(self, nums: List[int], target: int) -> List[int]:
+        n = len(nums)
+        left = 0
+        right = n - 1
+        res=[-1,-1]
+        while left <=right:
+            mid = left + ((right - left) >> 1)
+            if nums[mid] == target:
+                left=mid
+                right=mid
+                while left > 0 and nums[left-1] == target:
+                    left -= 1
+                while right < n - 1 and nums[right+1] == target:
+                    right += 1
+                res[0]=left
+                res[1]=right
+                break
+                #return [left + 1, right - 1]
+            elif nums[mid] > target:
+                right = mid - 1
+            else:
+                left = mid + 1
+        return res
