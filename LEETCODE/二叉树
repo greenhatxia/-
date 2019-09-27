@@ -19,3 +19,17 @@ class Solution:
         res.append(root.val)
         self.p(root.right,res)
         return res
+98. 验证二叉搜索树
+思路：因为二叉搜索树中序遍历是递增的,所以我们可以中序遍历判断前一数是否小于后一个数.
+中序遍历可以用上一题的代码
+def isValidBST(self, root: TreeNode) -> bool:
+        res = []
+        def helper(root):
+            if not root:
+                return 
+            helper(root.left)
+            res.append(root.val)
+            helper(root.right)
+        helper(root)
+        #别忘了每个节点数值不一样
+        return res == sorted(res) and len(set(res)) == len(res)
