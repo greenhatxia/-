@@ -424,3 +424,21 @@ def searchRange(self, nums: List[int], target: int) -> List[int]:
             else:
                 left = mid + 1
         return res
+50. Pow(x, n)
+//表示两数相除，向下取整，例如8 // 5 结果是1；
+/得到的值总是浮点数，例如：5 / 5结果是1.0。
+思路：https://blog.csdn.net/weixin_44033136/article/details/86494811
+x变成x的平方，幂乘以1/2倍
+#继续递归，举个例子：2**5=2*(2**4)=2*((2*2)**2) 
+def myPow(self, x: float, n: int) -> float:
+        if x==0:
+            return 0    
+        if n<0:
+            x=1/x
+            n=abs(n)
+        if n==0:
+            return 1
+        if n%2==1:
+            return x*self.myPow(x*x,n//2)
+        else:
+            return self.myPow(x*x,n//2)
