@@ -380,3 +380,29 @@ def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
         if carry_digit:
             p.next = ListNode(carry_digit)
         return dummy.next
+48.旋转图像（即顺时针旋转矩阵）
+给定一个 n × n 的二维矩阵表示一个图像。
+将图像顺时针旋转 90 度。
+#思路左神363，奇数偶数情况不需要分类讨论，while t1<t2，奇数最后t1==t2
+所以会运行n//2次，注意在内圈时，坐标不是从0开始，而是从t1开始，不要被第一次迭代误导
+写r方法的过程时从内圈进行考虑，不要从外圈考虑因为会被0误导
+class Solution:
+    def rotate(self, m: List[List[int]]) -> None:
+        """
+        Do not return anything, modify matrix in-place instead.
+        """
+        n=len(m)
+        t1=0
+        t2=n-1
+        while t1<t2:
+            self.r(m,t1,t2)
+            t1+=1
+            t2-=1
+        return m
+    def r(self,m,t1,t2):
+        for i in range(t2-t1):
+            tem=m[t2-i][t1]
+            m[t2-i][t1]=m[t2][t2-i]
+            m[t2][t2-i]=m[t1+i][t2]
+            m[t1+i][t2]=m[t1][t1+i]
+            m[t1][t1+i]=tem
