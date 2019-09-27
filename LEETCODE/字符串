@@ -343,6 +343,7 @@ def isMatch(self, s: str, p: str) -> bool:
         return dp[-1][-1]
 2. 两数相加
 思路https://zhuanlan.zhihu.com/p/62104034
+很简单，就是简单的加法进位。
 def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
         #dummy指向和指针的头部，用于返回结果的头指针
         dummy = ListNode(0)
