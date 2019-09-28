@@ -47,3 +47,23 @@ class Solution:
         if p1.val!=p2.val:
             return False
         return p1.val==p2.val and self.check(p1.left,p2.right) and self.check(p1.right,p2.left)
+102.二叉树的层次遍历
+思路：https://zhuanlan.zhihu.com/p/70960724
+tmp存节点的val，cur和nex存取的每一层的节点
+def levelOrder(self, root: TreeNode) -> List[List[int]]:
+        if not root: return []
+        res = []
+        cur_level = [root]
+        while cur_level:
+            tmp = []
+            next_level = []
+            for node in cur_level:
+                #输出是[[3],[9,20],[15,7]]，每一层的节点放在同一个list里
+                tmp.append(node.val)
+                if node.left:
+                    next_level.append(node.left)
+                if node.right:
+                    next_level.append(node.right)
+            res.append(tmp)
+            cur_level = next_level
+        return res
