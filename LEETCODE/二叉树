@@ -152,3 +152,19 @@ def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -
             return left
         else:
             return right
+19. 删除链表的倒数第N个节点
+dummy即是指向head的指针，定义他的目的是处理删除就是第一个节点的情况
+def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:
+        if not head:return 
+        dummy = ListNode(0)
+        dummy.next = head
+        fast = dummy
+        while n:
+            fast = fast.next
+            n -= 1
+        slow = dummy
+        while fast and fast.next:
+            fast = fast.next
+            slow = slow.next
+        slow.next = slow.next.next
+        return dummy.next
