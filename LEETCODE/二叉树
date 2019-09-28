@@ -98,7 +98,7 @@ def TreeDepth(self, pRoot):
         return count
 108. 将有序数组转换为二叉搜索树
 思路https://zhuanlan.zhihu.com/p/71328340
-找到数组的中点, 然后分成两部分,
+找到数组的中点, 然后分成两部分,每个根结点都是他所有子节点的中间值
 比如[-10,-3,0,5,9], 节点0的左边[-10, -3],右边[5, 9]
 依次递归下去.
 def sortedArrayToBST(self, nums: List[int]) -> TreeNode:
