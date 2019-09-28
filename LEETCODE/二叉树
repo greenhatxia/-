@@ -33,3 +33,17 @@ def isValidBST(self, root: TreeNode) -> bool:
         helper(root)
         #别忘了每个节点数值不一样
         return res == sorted(res) and len(set(res)) == len(res)
+101.对称二叉树
+思路https://zhuanlan.zhihu.com/p/70756777
+逐一比较根结点是否相等，左右子节点是否对称
+class Solution:
+    def isSymmetric(self, root: TreeNode) -> bool:
+        return self.check(root,root)
+    def check(self,p1,p2):
+        if p1==None and p2==None:
+            return True
+        if p1==None or p2==None:
+            return False
+        if p1.val!=p2.val:
+            return False
+        return p1.val==p2.val and self.check(p1.left,p2.right) and self.check(p1.right,p2.left)
