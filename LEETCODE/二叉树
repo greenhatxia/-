@@ -120,3 +120,19 @@ def connect(self, root: 'Node') -> 'Node':
         self.connect(root.left)
         self.connect(root.right)
         return root
+230. 二叉搜索树中第K小的元素
+思路：使用中序遍历建立list，取res[k-1]
+class Solution:
+    def kthSmallest(self, root: TreeNode, k: int) -> int:
+        #使用self.res来传递list
+        self.res=[]
+        self.k=k
+        self.m(root)
+        return self.res[k-1]
+    def m(self,root):
+        if not root:
+            #self.res.append("#")
+            return 
+        self.m(root.left)
+        self.res.append(root.val)
+        self.m(root.right)
