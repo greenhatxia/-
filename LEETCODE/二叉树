@@ -181,3 +181,20 @@ def hasCycle(self, head):
             if low==fast:
                 return True
         return False
+138. 复制带随机指针的链表
+思路https://zhuanlan.zhihu.com/p/74584535
+创建字典，字典的key是node，value是创建的复制节点，
+于是我们可以以node为索引，对他的random和next进行赋值
+def copyRandomList(self, head: 'Node') -> 'Node':
+        if not head: return None
+        lookup = {}
+        node = head
+        while node:
+            lookup[node]=Node(node.val,None,None)
+            node=node.next
+        node=head
+        while node:
+            lookup[node].next=lookup.get(node.next)
+            lookup[node].random=lookup.get(node.random)
+            node=node.next
+        return lookup[head]
