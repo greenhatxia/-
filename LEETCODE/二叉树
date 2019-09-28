@@ -67,3 +67,26 @@ def levelOrder(self, root: TreeNode) -> List[List[int]]:
             res.append(tmp)
             cur_level = next_level
         return res
+103. 二叉树的锯齿形层次遍历
+#思路：和层次遍历唯一的变化就是记录深度，当dep%2==1时，需要将val（而不是节点）反向一下即可
+def zigzagLevelOrder(self, root: TreeNode) -> List[List[int]]:
+        if not root:
+            return [] 
+        cur=[root]
+        res=[]
+        dep=0
+        while cur:
+            tem=[]
+            nex=[]
+            for i in cur:
+                tem.append(i.val)
+                if i.left:
+                    nex.append(i.left)
+                if i.right:
+                    nex.append(i.right)
+            if dep%2==1:
+                tem=tem[::-1]               
+            res.append(tem)
+            cur=nex
+            dep+=1
+        return res
