@@ -569,3 +569,47 @@ def sortColors(self, nums: List[int]) -> None:
             if nums[i] == 2:
                 nums[i], nums[right] = nums[right], nums[i]
                 right -= 1
+79. 单词搜索
+思路：剑指OFFER，可以不做，自己又不看答案手撸了一遍
+board =
+[
+  ['A','B','C','E'],
+  ['S','F','C','S'],
+  ['A','D','E','E']
+]
+给定 word = "ABCCED", 返回 true.
+给定 word = "SEE", 返回 true.
+给定 word = "ABCB", 返回 false.
+def exist(self, board: List[List[str]], word: str) -> bool:
+        m=len(board)
+        n=len(board[0])
+        row=0
+        col=0
+        len1=0
+        reach=[[0 for i in range(n)] for j in range(m)]
+        #print(reach)
+        def help(reach,row,col,len1):
+            if len1==len(word):
+                return True
+            #print(row,col,0<=row<m and 0<=col<n,reach)
+            if (0<=row<m and 0<=col<n) and reach[row][col]!=1: 
+                if board[row][col]==word[len1]:
+                    reach[row][col]=1
+                    #print(reach)
+                    len1+=1
+                    flag=help(reach,row-1,col,len1) or 
+                    help(reach,row,col-1,len1) or help(reach,row+1,col,len1) 
+                    or help(reach,row,col+1,len1) 
+                    if not flag:
+                        len1-=1
+                        reach[row][col]=0
+                        return False
+                    else:
+                        return True
+            else:
+                return False
+        for i in range(m):
+            for j in range(n):
+                if help(reach,i,j,len1):
+                    return True
+        return False
