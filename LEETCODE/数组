@@ -442,3 +442,38 @@ def myPow(self, x: float, n: int) -> float:
             return x*self.myPow(x*x,n//2)
         else:
             return self.myPow(x*x,n//2)
+54螺旋矩阵
+思路https://zhuanlan.zhihu.com/p/66223161
+就是模拟螺旋过程，while里有4个过程，前3个要加if：break
+虽然链接答案只在前两个加，都通过了
+要用for i in range(zuo_col, you_col+1)而不是for i in matrix[][],否则会出错
+def spiralOrder(self, matrix):
+        if not matrix : return []
+        shang_row = 0
+        xia_row = len(matrix) - 1 
+        zuo_col = 0
+        you_col = len(matrix[0]) - 1
+        res = []
+        while shang_row <= xia_row  and  zuo_col <= you_col:
+            # 从左到右
+            for i in range(zuo_col, you_col+1):
+                #print(shang_row, i)
+                res.append(matrix[shang_row][i])
+            shang_row += 1
+            if shang_row > xia_row:break
+            # 从上到下
+            for i in range(shang_row, xia_row+1):
+                res.append(matrix[i][you_col])
+            you_col -= 1
+            if zuo_col > you_col:break
+            # 从右到左
+            for i in range(you_col, zuo_col - 1,-1):
+                #print(xia_row - 1, i)
+                res.append(matrix[xia_row][i])
+            xia_row -= 1
+            # 从下到上
+            for i in range(xia_row , shang_row - 1, -1):
+                #print(i, zuo_col)  
+                res.append(matrix[i][zuo_col])
+            zuo_col += 1
+        return res
