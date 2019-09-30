@@ -477,3 +477,17 @@ def spiralOrder(self, matrix):
                 res.append(matrix[i][zuo_col])
             zuo_col += 1
         return res
+55.跳跃游戏
+#https://zhuanlan.zhihu.com/p/75325140
+def canJump(self, nums: List[int]) -> bool:
+        if len(nums)==1:
+            return True
+        best=0
+        n=len(nums)
+        for i in range(n):
+            #如果best比nums[i]+i远
+            best=max(best,nums[i]+i)
+            if best==i:
+                return False
+            if best>=n-1:
+                return True
