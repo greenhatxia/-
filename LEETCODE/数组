@@ -550,3 +550,22 @@ def setZeroes(self, matrix: List[List[int]]) -> None:
         if col0_flag:
             for i in range(row):
                 matrix[i][0] = 0
+75. 颜色分类
+思路：https://zhuanlan.zhihu.com/p/67687721
+一个直观的解决方案是使用计数排序的两趟扫描算法。
+首先，迭代计算出0、1 和 2 元素的个数，然后按照0、1、2的排序，重写当前数组。
+你能想出一个仅使用常数空间的一趟扫描算法吗
+因为0和2分别在排序之后一定在最左边,和最右边,
+所以我们用双指针分别记录最左边,和最右边,依次把0,2交换过去!
+def sortColors(self, nums: List[int]) -> None:
+        left = 0
+        for i in range(len(nums)):
+            if nums[i] == 0:
+                nums[i], nums[left] = nums[left], nums[i]
+                left += 1
+        right = len(nums) - 1
+        #迭代时是反序的
+        for i in range(len(nums) - 1, left - 1, -1):
+            if nums[i] == 2:
+                nums[i], nums[right] = nums[right], nums[i]
+                right -= 1
