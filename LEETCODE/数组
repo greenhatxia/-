@@ -644,6 +644,7 @@ def solve(self, grid: List[List[str]]) -> None:
         m=len(grid)
         n=len(grid[0])
         def dfs(row,col):
+            #if的最后一个必须grid[row][col]!="O"不能grid[row][col]=="1"
             if row not in range(m) or col not in range(n) or grid[row][col]!="O":
                 return 
             grid[row][col]="*"
