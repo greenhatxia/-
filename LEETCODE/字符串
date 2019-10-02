@@ -406,3 +406,14 @@ class Solution:
             m[t2][t2-i]=m[t1+i][t2]
             m[t1+i][t2]=m[t1][t1+i]
             m[t1][t1+i]=tem
+7.整数反转
+def reverse(self, x: int) -> int:
+        if x<0:
+            flag=-1
+        else:
+            flag=1
+        x=flag*int(str(abs(x))[::-1])
+        if (-(2**31))<=x<=(2**31-1):
+            return x
+        else:
+            return 0
