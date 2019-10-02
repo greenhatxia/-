@@ -407,6 +407,7 @@ class Solution:
             m[t1+i][t2]=m[t1][t1+i]
             m[t1][t1+i]=tem
 7.整数反转
+https://zhuanlan.zhihu.com/p/62875122记思路即可
 def reverse(self, x: int) -> int:
         if x<0:
             flag=-1
