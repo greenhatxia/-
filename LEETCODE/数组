@@ -671,3 +671,38 @@ def singleNumber(self, nums: List[int]) -> int:
         for num in nums[1:]:
             res ^= num
         return res
+160.相交链表
+思路：长的链表先走k步，再两个链表一起走，画图理解
+https://zhuanlan.zhihu.com/p/76407574
+def getIntersectionNode(self, headA, headB):
+        headA_len = 0
+        headB_len = 0
+        p_A = headA
+        p_B = headB
+        # 求出headA, headB的长度
+        while p_A or p_B:
+            if p_A:
+                headA_len += 1
+                p_A = p_A.next
+            if p_B:
+                headB_len += 1
+                p_B = p_B.next
+        def helper(headA, headB, headA_len, headB_len):
+            diff = headB_len - headA_len
+            p_A = headA
+            p_B = headB
+            # 长链表先走差值
+            while diff:
+                diff -= 1
+                p_B = p_B.next
+            # 连个链表一起走
+            while p_B and p_A:
+                if p_A == p_B:
+                    return p_A
+                p_A = p_A.next
+                p_B = p_B.next
+            return None
+        # 保持headA链表长度小于headB的链表长度
+        if headB_len < headA_len :
+            return helper(headB, headA, headB_len , headA_len)
+        return helper(headA, headB, headA_len, headB_len)
