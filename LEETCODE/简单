@@ -1,0 +1,13 @@
+172阶乘后的零
+思路https://zhuanlan.zhihu.com/p/77405853
+发现能在末尾形成0，来自因子2和5 ,只要有5，必定有2能与它组合
+因此问题简化成一共有几个5
+当n =5时候，可以拆出 1个
+n=10,拆出2....
+但是，这里n = 25,可以拆出6而不是5，是因为 25自身=5*5，有2个5
+def trailingZeroes(self, n: int) -> int:
+        res = 0
+        while n > 0:
+            n //= 5
+            res += n
+        return res
