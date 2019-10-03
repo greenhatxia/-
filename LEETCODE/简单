@@ -46,3 +46,13 @@ def countPrimes(self, n: int) -> int:
                 isPrimes[i * j] = 0
                 j += 1
         return res
+206.反转链表
+用一个tmp和pre就解决，直接反转即可
+def reverseList(self, head: ListNode) -> ListNode:
+        pre=None
+        while head:
+            tmp=head.next
+            head.next=pre
+            pre=head
+            head=tmp
+        return pre
