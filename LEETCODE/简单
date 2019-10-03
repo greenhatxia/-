@@ -109,3 +109,10 @@ def isPowerOfThree(self, n: int) -> bool:
                 return False
             n/=3
         return n==1
+242. 有效的字母异位词
+只要字符串A的字符组成和B的组成相同即可
+时间复杂度：O(logn)
+    def isAnagram(self, s: str, t: str) -> bool:
+        return sorted(s) == sorted(t)
+思路2：O（n）
+对字符计数
