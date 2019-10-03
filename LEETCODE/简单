@@ -11,3 +11,10 @@ def trailingZeroes(self, n: int) -> int:
             n //= 5
             res += n
         return res
+190. 颠倒二进制位
+思路https://zhuanlan.zhihu.com/p/37648170
+def reverseBits(self, n):
+        res=0
+        for i in range(32):
+            res=res|((n>>i)&1)<<(31-i)
+        return res
