@@ -93,3 +93,10 @@ def isPalindrome(self, head: ListNode) -> bool:
             c1=c1.next
             c2=c2.next
         return True
+237. 删除链表中的节点
+思路：https://zhuanlan.zhihu.com/p/81320865
+只给了一个指定节点
+只要交换一个就行了，然后删除下一个位置
+def deleteNode(self, node):
+        node.val, node.next.val = node.next.val, node.val
+        node.next = node.next.next
