@@ -1,0 +1,18 @@
+240. 搜索二维矩阵 II
+思路https://zhuanlan.zhihu.com/p/81588260很简单
+从右上角出发，
+如果matrix位置上的值比目标值大，减少列
+如果比目标值小，增大行！
+if not matrix: return False
+        row = len(matrix)
+        col = len(matrix[0])
+        i = 0
+        j = col - 1
+        while i < row and j >= 0:
+            if matrix[i][j] == target:
+                return True
+            elif matrix[i][j] > target:
+                j -= 1
+            else:
+                i += 1
+        return False
