@@ -1,0 +1,14 @@
+https://zhuanlan.zhihu.com/p/65861269
+def permute(self, nums: List[int]) -> List[List[int]]:
+        if not nums:
+            return []
+        res=[]
+        def queue(nums,tmp):
+            if not nums:
+                res.append(tmp)
+                return
+            for i in range(len(nums)):
+                queue(nums[:i] + nums[i + 1:], tmp + [nums[i]])
+        #tmp初始也是[]
+        queue(nums,[])
+        return res
