@@ -20,3 +20,4 @@ def trap(self, height: List[int]) -> int:
         res = 0
         for i in range(n):
             res += min(max_left[i], max_right[i]) - height[i]
+        return res
