@@ -1,0 +1,6 @@
+ 集合不用管元素顺序，用例子很容易理解
+def subsets(self, nums: List[int]) -> List[List[int]]:
+        res = [[]]
+        for i in nums:
+            res = res + [[i] + num for num in res]
+        return res
