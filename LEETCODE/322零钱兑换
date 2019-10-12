@@ -1,4 +1,5 @@
 很简单，求的是最少的硬币个数
+代码来自https://zhuanlan.zhihu.com/p/57382115
 def coinChange(self, coins: List[int], amount: int) -> int:
         dp = [float("inf")] * (amount+1)
         dp[0] = 0
